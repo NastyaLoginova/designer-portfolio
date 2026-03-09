@@ -10,10 +10,8 @@ const CONFIG = {
   },
   profile: {
     name: 'Настя Логинова',
-    roleLine:
-      'Проектирую и развиваю цифровые продукты в e-commerce и B2B‑сервисах.',
     description:
-      'Веду задачи от определения проблемы и гипотез до внедрения и оценки результата.',
+      'Проектирую и развиваю цифровые продукты в e-commerce и B2B-сервисах. Веду задачи от определения проблемы и гипотез до внедрения и оценки результата.',
     experience: [
       {
         company: 'Heads and Hands',
@@ -166,7 +164,7 @@ function createAboutSection(config) {
   });
   const aboutText = createElement('p', {
     className: 'about__card-text',
-    text: `${config.roleLine} ${config.description}`,
+    text: `${config.description}`,
   });
   aboutCard.appendChild(aboutTitle);
   aboutCard.appendChild(aboutText);
@@ -191,7 +189,7 @@ function createAboutSection(config) {
     row.appendChild(period);
     metaList.appendChild(row);
   });
-  
+
   expCard.appendChild(metaList);
 
   cardsWrapper.appendChild(aboutCard);
