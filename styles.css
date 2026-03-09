@@ -115,8 +115,8 @@ a {
 .site-header__link {
   font-size: 13px;
   line-height: 16px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
+  font-weight: 400;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--header-text);
   position: relative;
@@ -183,16 +183,15 @@ a {
   position: relative;
   width: 568px;
   max-width: 100%;
-  aspect-ratio: 1 / 1;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: center;
   overflow: hidden;
 }
 
 .about__photo {
-  height: 100%;
-  width: auto;
+  width: 100%;
+  height: auto;
   max-width: none;
   object-fit: contain;
 }
@@ -204,22 +203,24 @@ a {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 16px;
-  border-radius: 999px;
+  padding: 8px 16px;
+  border-radius: 8px;
   background: var(--button-bg);
   color: var(--button-text);
-  font-size: 13px;
-  letter-spacing: 0.06em;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
 }
 
 .about__action--cv {
-  left: -10px;
+  top: 132px;
+  left: 36px;
 }
 
 .about__action--tg {
-  right: -10px;
+  top: 312px;
+  right: 20px;
 }
 
 .about__action-icon {
@@ -269,10 +270,11 @@ a {
   gap: 18px;
   width: 100%;
   max-width: 568px;
+  margin-top: -88px; /* отступ от фото до блока "Обо мне" */
 }
 
 .about__title {
-  font-size: 32px;
+  font-size: 22px;
   line-height: 1.15;
 }
 
@@ -292,30 +294,34 @@ a {
 .about__card {
   width: 100%;
   max-width: 568px;
-  padding: 18px 20px 20px;
+  padding: 24px;
   border-radius: var(--card-radius);
-  background: var(--card-bg);
+  background: rgba(255, 255, 255, 0.64);
   box-shadow: var(--card-shadow);
-  backdrop-filter: blur(24px);
+  backdrop-filter: blur(26px) saturate(150%);
 }
 
 .about__card-title {
-  margin: 0 0 6px;
-  font-size: 16px;
+  margin: 0 0 12px;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 .about__card-text {
   margin: 0;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--muted-color);
+  font-size: 15px;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+  font-weight: 300;
+  color: #484848;
 }
 
 .about__meta {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--muted-color);
 }
 
