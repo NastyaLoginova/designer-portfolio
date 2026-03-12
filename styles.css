@@ -1,18 +1,13 @@
 :root {
   --bg-color: #f6f6f6;
   --text-color: #484848;
-  --muted-color: #6b6b80;
   --card-bg: rgba(255, 255, 255, 0.64);
   --card-radius: 8px;
   --button-bg: #050508;
   --button-text: #ffffff;
-  --accent-color: #ff4f8b;
   --dot-step: 92px;
   --header-top: 20px;
   --header-height: 56px;
-  --header-bg: rgba(255, 255, 255, 0.64);
-  --header-text: #484848;
-  --header-text-active: #000000;
 }
 
 *,
@@ -99,7 +94,7 @@ a {
   padding: 14px 24px;
 
   border-radius: 8px;
-  background: var(--header-bg);
+  background: var(--card-bg);
   backdrop-filter: blur(26px) saturate(150%);
 }
 
@@ -113,18 +108,18 @@ a {
 }
 
 .site-header__link {
-  font-size: 13px;
-  line-height: 16px;
-  font-weight: 400;
-  letter-spacing: 0.05em;
+  font-size: var(--font-size-13);
+  line-height: var(--line-height-13);
+  font-weight: var(--font-weight-regular);
   text-transform: uppercase;
-  color: var(--header-text);
+  color: var(--text-color);
   position: relative;
   padding-bottom: 2px;
+  letter-spacing: 0.01em;
 }
 
 .site-header__link--active {
-  color: var(--header-text-active);
+  color: var(--text-color);
 }
 
 .site-header__link::after {
@@ -153,6 +148,10 @@ a {
   max-width: 568px;
   margin: calc(var(--header-top) + var(--header-height) + 10px) auto 72px;
   padding: 0 16px 80px;
+}
+
+.page--after {
+  margin-top: -76px;
 }
 
 @media (max-width: 768px) {
@@ -209,7 +208,7 @@ a {
   color: var(--button-text);
   font-size: 15px;
   font-weight: 400;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
 }
 
@@ -270,19 +269,7 @@ a {
   gap: 18px;
   width: 100%;
   max-width: 568px;
-  margin-top: -88px; /* отступ от фото до блока "Обо мне" */
-}
-
-.about__title {
-  font-size: 22px;
-  line-height: 1.15;
-}
-
-.about__subtitle {
-  font-size: 14px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent-color);
+  margin-top: -88px;
 }
 
 .about__cards {
@@ -296,33 +283,34 @@ a {
   max-width: 568px;
   padding: 24px;
   border-radius: var(--card-radius);
-  background: rgba(255, 255, 255, 0.64);
+  background: var(--card-bg);
   box-shadow: var(--card-shadow);
   backdrop-filter: blur(26px) saturate(150%);
 }
 
-.about__card-title {
+.card__title {
   margin: 0 0 12px;
-  font-size: 22px;
-  font-weight: 400;
+  font-size: var(--font-size-22);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-22);
   letter-spacing: -0.01em;
 }
 
-.about__card-text {
+.card__text {
   margin: 0;
-  font-size: 15px;
-  line-height: 22px;
-  letter-spacing: -0.01em;
-  font-weight: 300;
+  font-size: var(--font-size-15);
+  line-height: var(--line-height-15);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 0.01em;
   color: #484848;
 }
 
 .about__meta {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  font-size: 15px;
-  color: var(--muted-color);
+  gap: 12px;
+  font-size: var(--font-size-15);
+  color: var(--text-color);
 }
 
 .about__meta-row {
@@ -331,7 +319,71 @@ a {
   gap: 16px;
 }
 
-.about__meta-role {
+.about__meta-years {
   color: var(--text-color);
+}
+
+/* Кейсы */
+
+.cases {
+  display: flex;
+  flex-direction: column;
+  gap: 76px;
+}
+
+.case {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.case__image-wrapper {
+  width: 100%;
+  max-width: 568px;
+}
+
+.case__image-frame {
+  width: 568px;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.case__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.case__content {
+  width: 100%;
+  max-width: 568px;
+  margin-top: 24px;
+}
+
+.case__card {
+  padding-top: 24px;
+}
+
+.case__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.case__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: 100px;
+  background: #f2f2f2;
+  font-size: var(--font-size-13);
+  line-height: var(--line-height-13);
+  font-weight: var(--font-weight-regular);
+  text-transform: uppercase;
+  color: var(--text-color);
+  transform: translateY(-8px);
 }
 
