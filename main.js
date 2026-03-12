@@ -14,17 +14,33 @@ const CONFIG = {
       'Проектирую и развиваю цифровые продукты в e-commerce и B2B-сервисах. Веду задачи от определения проблемы и гипотез до внедрения и оценки результата.',
     experience: [
       {
-        company: 'Heads and Hands',
-        role: 'продуктовый дизайнер',
+        company: 'Heads and Hands · продуктовый дизайнер',
         period: '2024 — now',
       },
       {
-        company: 'K‑Digital',
-        role: 'UX/UI дизайнер',
+        company: 'K‑Digital · UX/UI дизайнер',
         period: '2023 — 2024',
       },
     ],
   },
+  cases: [
+    {
+      id: 'petrovich',
+      title: 'Петрович',
+      description:
+        'Перевод каталога в маркетплейс‑модель. Спроектировала новый листинг и карточку товара в условиях сложной категорийной структуры. Фокус — конверсия в add‑to‑cart и масштабируемость решения.',
+      image: 'assets/petrovich_1.png',
+      link: 'https://www.google.com/',
+    },
+    {
+      id: 'oskelly',
+      title: 'Oskelly',
+      description:
+        'Концепция shop-in-shop раздела BEEGZ внутри экосистемы Oskelly. Разработала визуальную модель и UI-принципы для выделения streetwear-направления в рамках существующей дизайн-системы.',
+      image: 'assets/petrovich_1.png',
+      link: 'https://www.google.com/',
+    },
+  ],
 };
 
 function createElement(tag, options = {}) {
@@ -159,11 +175,11 @@ function createAboutSection(config) {
     className: 'about__card',
   });
   const aboutTitle = createElement('h2', {
-    className: 'about__card-title',
+    className: 'card__title',
     text: 'Настя Логинова',
   });
   const aboutText = createElement('p', {
-    className: 'about__card-text',
+    className: 'card__text',
     text: `${config.description}`,
   });
   aboutCard.appendChild(aboutTitle);
@@ -179,10 +195,10 @@ function createAboutSection(config) {
     const row = createElement('div', { className: 'about__meta-row' });
     const company = createElement('span', {
       className: 'about__meta-company',
-      text: `${item.company} — ${item.role}`,
+      text: `${item.company}`,
     });
     const period = createElement('span', {
-      className: 'about__meta-role',
+      className: 'about__meta-years',
       text: item.period,
     });
     row.appendChild(company);
@@ -204,15 +220,92 @@ function createAboutSection(config) {
   return section;
 }
 
+function createCasesSection(cases) {
+  const section = createElement('section', {
+    className: 'page page--after',
+    attrs: { id: 'cases' },
+  });
+
+  const list = createElement('div', { className: 'cases' });
+
+  cases.forEach((item) => {
+    const caseBlock = createElement('article', {
+      className: 'case',
+    });
+
+    const imageWrapper = createElement('div', {
+      className: 'case__image-wrapper',
+    });
+    const imageFrame = createElement('div', {
+      className: 'case__image-frame',
+    });
+    const img = createElement('img', {
+      className: 'case__image',
+      attrs: {
+        src: item.image,
+        alt: item.title,
+      },
+    });
+    imageFrame.appendChild(img);
+    imageWrapper.appendChild(imageFrame);
+
+    const content = createElement('div', {
+      className: 'case__content',
+    });
+    const card = createElement('div', {
+      className: 'about__card case__card',
+    });
+    const headerRow = createElement('div', {
+      className: 'case__header',
+    });
+    const title = createElement('h3', {
+      className: 'card__title',
+      text: item.title,
+    });
+    const button = createElement('a', {
+      className: 'case__button',
+      text: 'ЧИТАТЬ КЕЙС',
+      attrs: {
+        href: item.link,
+        target: '_blank',
+        rel: 'noopener noreferrer',
+      },
+    });
+
+    headerRow.appendChild(title);
+    headerRow.appendChild(button);
+
+    const text = createElement('p', {
+      className: 'card__text',
+      text: item.description,
+    });
+
+    card.appendChild(headerRow);
+    card.appendChild(text);
+
+    content.appendChild(card);
+
+    caseBlock.appendChild(imageWrapper);
+    caseBlock.appendChild(content);
+
+    list.appendChild(caseBlock);
+  });
+
+  section.appendChild(list);
+  return section;
+}
+
 function init() {
   const app = document.getElementById('app');
   if (!app) return;
 
   const header = createHeader(CONFIG.nav);
   const aboutSection = createAboutSection(CONFIG.profile);
+  const casesSection = createCasesSection(CONFIG.cases);
 
   document.body.insertBefore(header, app);
   app.appendChild(aboutSection);
+  app.appendChild(casesSection);
 }
 
 function updateHeaderMetrics() {
