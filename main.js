@@ -6,7 +6,7 @@ const CONFIG = {
   ],
   links: {
     cv: 'https://www.google.com/',
-    tg: 'https://www.google.com/',
+    tg: 'https://t.me/NastyaLoginova',
   },
   profile: {
     name: 'Настя Логинова',
@@ -25,19 +25,48 @@ const CONFIG = {
   },
   cases: [
     {
-      id: 'petrovich',
+      id: 'petrovich_1',
       title: 'Петрович',
       description:
         'Перевод каталога в маркетплейс‑модель. Спроектировала новый листинг и карточку товара в условиях сложной категорийной структуры. Фокус — конверсия в add‑to‑cart и масштабируемость решения.',
-      image: 'assets/petrovich_1.png',
+      media: 'assets/oskelly.mp4',
+      isExpandable: true,
       link: 'https://www.google.com/',
     },
     {
       id: 'oskelly',
       title: 'Oskelly',
       description:
-        'Концепция shop-in-shop раздела BEEGZ внутри экосистемы Oskelly. Разработала визуальную модель и UI-принципы для выделения streetwear-направления в рамках существующей дизайн-системы.',
-      image: 'assets/petrovich_1.png',
+        'Концепция shop-in-shop раздела BEEGZ внутри экосистемы Oskelly. Разработала визуальную модель и UI-принципыдля выделения streetwear-направления в рамках существующей дизайн-системы.',
+      media: 'assets/oskelly.mp4',
+      isExpandable: false,
+      link: 'https://www.google.com/',
+    },
+    {
+      id: 'petrovich_1',
+      title: 'Петрович',
+      description:
+        'Рефакторинг корзины. Спроектировала новые сценарии покупки: подбор аналогов, сопутсвующих товаров, добавление услуг монтажа.',
+      media: 'assets/oskelly.mp4',
+      isExpandable: true,
+      link: 'https://www.google.com/',
+    },
+    {
+      id: 'growFood',
+      title: 'Grow Food',
+      description:
+        'Редизайн профиля и проектирование программы лояльности в рамках обновления продукта. Работала в заданной архитектуре, интегрируя новую механику в существующий пользовательский сценарий.',
+      media: 'assets/oskelly.mp4',
+      isExpandable: false,
+      link: 'https://www.google.com/',
+    },
+      {
+      id: 'securOS',
+      title: 'SecurOS',
+      description:
+        'Развитие операторского интерфейса: дополняла продукт новыми фичами и улучшала сценарии обработки событий на основе фидбека операторов ситуационных центров.',
+      media: 'assets/oskelly.mp4',
+      isExpandable: true,
       link: 'https://www.google.com/',
     },
   ],
@@ -133,15 +162,19 @@ function createAboutSection(config) {
     },
   });
 
-  const cvIcon = createElement('span', {
-    className: 'about__action-icon',
-  });
   const cvLabel = createElement('span', {
     className: 'about__action-label',
     text: 'CV',
   });
-  cvButton.appendChild(cvIcon);
+  const cvIcon = createElement('img', {
+    className: 'about__action-icon',
+    attrs: {
+      src: 'assets/cv_icon.svg',
+      alt: 'CV',
+    },
+  });
   cvButton.appendChild(cvLabel);
+  cvButton.appendChild(cvIcon);
 
   const tgButton = createElement('a', {
     className: 'about__action about__action--tg',
@@ -156,12 +189,15 @@ function createAboutSection(config) {
     className: 'about__action-label',
     text: 'TG',
   });
-  const tgArrow = createElement('span', {
-    className: 'about__action-arrow',
-    text: '→',
+  const tgIcon = createElement('img', {
+    className: 'about__action-icon',
+    attrs: {
+      src: 'assets/tg_icon.svg',
+      alt: 'TG',
+    },
   });
   tgButton.appendChild(tgLabel);
-  tgButton.appendChild(tgArrow);
+  tgButton.appendChild(tgIcon);
 
   photoWrapper.appendChild(photoCard);
   photoWrapper.appendChild(cvButton);
@@ -233,21 +269,13 @@ function createCasesSection(cases) {
       className: 'case',
     });
 
-    const imageWrapper = createElement('div', {
-      className: 'case__image-wrapper',
-    });
-    const imageFrame = createElement('div', {
-      className: 'case__image-frame',
-    });
-    const img = createElement('img', {
-      className: 'case__image',
+    const media = createElement('img', {
+      className: 'case__media',
       attrs: {
-        src: item.image,
+        src: item.media,
         alt: item.title,
       },
     });
-    imageFrame.appendChild(img);
-    imageWrapper.appendChild(imageFrame);
 
     const content = createElement('div', {
       className: 'case__content',
@@ -273,7 +301,9 @@ function createCasesSection(cases) {
     });
 
     headerRow.appendChild(title);
-    headerRow.appendChild(button);
+    if (item.isExpandable) {
+        headerRow.appendChild(button);
+    }
 
     const text = createElement('p', {
       className: 'card__text',
@@ -285,7 +315,7 @@ function createCasesSection(cases) {
 
     content.appendChild(card);
 
-    caseBlock.appendChild(imageWrapper);
+    caseBlock.appendChild(media);
     caseBlock.appendChild(content);
 
     list.appendChild(caseBlock);
@@ -295,17 +325,73 @@ function createCasesSection(cases) {
   return section;
 }
 
+function createFooterSection() {
+  const section = createElement('section', {
+    className: 'footer-section',
+  });
+
+  const wrapper = createElement('div', { className: 'footer-section__inner' });
+
+  const content = createElement('div', { className: 'footer-section__content' });
+
+  const text1 = createElement('h2', {
+    className: 'footer-section__title',
+    text: 'Спасибо, что посмотрели',
+  });
+  const text2 = createElement('p', {
+    className: 'footer-section__subtitle',
+    text: 'Буду рада обсудить с вами проект',
+  });
+
+  content.appendChild(text1);
+  content.appendChild(text2);
+
+  const buttonsWrapper = createElement('div', { className: 'footer-section__buttons' });
+
+  const buttonsConfig = [
+    { label: 'CV', href: 'https://www.google.com/' },
+    { label: 'TELEGRAM', href: 'https://t.me/NastyaLoginova' },
+    { label: 'LINKEDIN', href: 'https://www.google.com/' }
+  ];
+
+  buttonsConfig.forEach(btn => {
+    const button = createElement('a', {
+      className: 'footer-section__button',
+      attrs: {
+        href: btn.href,
+        target: '_blank',
+        rel: 'noopener noreferrer',
+      },
+      text: btn.label
+    });
+    buttonsWrapper.appendChild(button);
+  });
+
+  content.appendChild(buttonsWrapper);
+  wrapper.appendChild(content);
+  section.appendChild(wrapper);
+
+  return section;
+}
+
 function init() {
   const app = document.getElementById('app');
   if (!app) return;
 
+  const dotGrid = createElement('div', { className: 'dot-grid' });
+  document.body.appendChild(dotGrid);
+
   const header = createHeader(CONFIG.nav);
   const aboutSection = createAboutSection(CONFIG.profile);
   const casesSection = createCasesSection(CONFIG.cases);
+  const footerSection = createFooterSection();
 
   document.body.insertBefore(header, app);
   app.appendChild(aboutSection);
   app.appendChild(casesSection);
+  app.appendChild(footerSection);
+
+  setupNavigationScroll();
 }
 
 function updateHeaderMetrics() {
@@ -383,3 +469,41 @@ window.addEventListener('resize', () => {
 });
 
 window.addEventListener('scroll', updateActiveNav);
+
+function setupNavigationScroll() {
+  const links = document.querySelectorAll('.site-header__link');
+  
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = link.getAttribute('href');
+      
+      if (href === '#about') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      } else if (href === '#cases') {
+        const casesSection = document.getElementById('cases');
+        if (casesSection) {
+          const rect = casesSection.getBoundingClientRect();
+          const offsetTop = rect.top + window.pageYOffset - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      } else if (href === '#contacts') {
+        const footerSection = document.querySelector('.footer-section');
+        if (footerSection) {
+          const rect = footerSection.getBoundingClientRect();
+          const offsetTop = rect.top + window.pageYOffset - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  });
+}
