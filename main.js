@@ -29,7 +29,7 @@ const CONFIG = {
       title: 'Петрович',
       description:
         'Перевод каталога в маркетплейс‑модель. Спроектировала новый листинг и карточку товара в условиях сложной категорийной структуры. Фокус — конверсия в add‑to‑cart и масштабируемость решения.',
-      media: 'assets/oskelly.mp4',
+      media: 'assets/petrovich.mp4',
       isExpandable: true,
       link: 'https://www.google.com/',
     },
@@ -43,7 +43,7 @@ const CONFIG = {
       link: 'https://www.google.com/',
     },
     {
-      id: 'petrovich_1',
+      id: 'petrovich_2',
       title: 'Петрович',
       description:
         'Рефакторинг корзины. Спроектировала новые сценарии покупки: подбор аналогов, сопутсвующих товаров, добавление услуг монтажа.',
@@ -56,7 +56,7 @@ const CONFIG = {
       title: 'Grow Food',
       description:
         'Редизайн профиля и проектирование программы лояльности в рамках обновления продукта. Работала в заданной архитектуре, интегрируя новую механику в существующий пользовательский сценарий.',
-      media: 'assets/oskelly.mp4',
+      media: 'assets/growfood.mp4',
       isExpandable: false,
       link: 'https://www.google.com/',
     },
@@ -269,11 +269,16 @@ function createCasesSection(cases) {
       className: 'case',
     });
 
-    const media = createElement('img', {
+    const media = createElement('video', {
       className: 'case__media',
       attrs: {
         src: item.media,
         alt: item.title,
+        autoplay: true,
+        loop: true,
+        muted: true,
+        preload: 'auto',
+        playsinline: true,
       },
     });
 
@@ -444,10 +449,27 @@ function updateActiveNav() {
   }
 }
 
+function initVideosAutoplay() {
+  const videos = document.querySelectorAll('video');
+  if (!videos.length) return;
+
+  videos.forEach((video) => {
+    if (!(video instanceof HTMLVideoElement)) return;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => {});
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   init();
   updateHeaderMetrics();
   updateActiveNav();
+  initVideosAutoplay();
 });
 
 window.addEventListener('resize', () => {

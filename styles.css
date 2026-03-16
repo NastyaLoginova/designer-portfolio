@@ -112,8 +112,8 @@ a {
 }
 
 .site-header__link {
-  font-size: var(--font-size-13);
-  line-height: var(--line-height-13);
+  font-size: var(--font-size-15);
+  line-height: var(--line-height-15);
   font-weight: var(--font-weight-regular);
   text-transform: uppercase;
   color: var(--text-color);
@@ -132,16 +132,14 @@ a {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 2px;
-  border-radius: 999px;
+  height: 1.5px;
   background: currentColor;
   opacity: 0;
   transform: scaleX(0);
   transform-origin: left;
-  transition: opacity 0.16s ease-out, transform 0.16s ease-out;
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
 }
 
-/* Исправлено: hover-эффект для всех навигационных ссылок */
 .site-header__link:hover,
 .site-header__link--active {
   color: var(--text-color);
@@ -209,9 +207,13 @@ a {
   background: var(--button-bg);
   color: var(--button-text);
   font-size: var(--font-size-15);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-regular);
   letter-spacing: 0.01em;
   text-transform: uppercase;
+}
+
+.about__action:hover {
+  background: #262626;
 }
 
 .about__action--cv {
@@ -347,6 +349,10 @@ a {
   transform: translateY(-8px);
 }
 
+.case__button:hover {
+  background: #EAEAEA;
+}
+
 /* Футер */
 
 .footer-section {
@@ -407,7 +413,11 @@ a {
   background: var(--button-secondary-bg);
   color: var(--button-secondary-text);
   font-size: var(--font-size-15);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-regular);
   letter-spacing: 0.01em;
   text-transform: uppercase;
+}
+
+.footer-section__button:hover {
+  background: #E4E4E4;
 }
