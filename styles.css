@@ -9,7 +9,6 @@
   --button-secondary-bg: #ffffff;
   --button-text: #ffffff;
   --button-secondary-text: #000000;
-  --dot-step: 92px;
   --header-top: 20px;
   --header-height: 56px;
 }
@@ -32,24 +31,27 @@ body {
   pointer-events: none;
   z-index: -1;
   
-  background-image: linear-gradient(#9f9f9f 0 0);
-  background-size: 2px 2px;
-  background-repeat: repeat;
-  
-  mask-image:
-    repeating-linear-gradient(
-      to right,
-      black 0 2px,
-      transparent 2px var(--dot-step)
-    ),
-    repeating-linear-gradient(
-      to bottom,
-      black 0 2px,
-      transparent 2px var(--dot-step)
-    );
-  
-  mask-composite: intersect;
-  -webkit-mask-composite: source-in;
+  background-image: radial-gradient(circle, #9f9f9f 1px, transparent 1px);
+  background-size: 100px 92px;
+  background-position: center;
+}
+
+@media (max-width: 768px) {
+  .dot-grid {
+    background-size: 88px 80px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .dot-grid {
+    background-size: 92px 80px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .dot-grid {
+    background-size: 100px 92px;
+  }
 }
 
 body {
@@ -139,7 +141,14 @@ a {
   transition: opacity 0.16s ease-out, transform 0.16s ease-out;
 }
 
-.site-header__link:hover::after {
+/* Исправлено: hover-эффект для всех навигационных ссылок */
+.site-header__link:hover,
+.site-header__link--active {
+  color: var(--text-color);
+}
+
+.site-header__link:hover::after,
+.site-header__link--active::after {
   opacity: 1;
   transform: scaleX(1);
 }
@@ -154,13 +163,6 @@ a {
 
 .page--after {
   margin-top: -76px;
-}
-
-@media (max-width: 768px) {
-  .page {
-    margin-top: 120px;
-    padding-bottom: 56px;
-  }
 }
 
 /* Блок "Обо мне" */
@@ -199,29 +201,27 @@ a {
 
 .about__action {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px;
+  padding: 10px 16px;
   border-radius: 8px;
   background: var(--button-bg);
   color: var(--button-text);
-  font-size: 15px;
-  font-weight: 400;
+  font-size: var(--font-size-15);
+  font-weight: var(--font-weight-medium);
   letter-spacing: 0.01em;
   text-transform: uppercase;
 }
 
 .about__action--cv {
-  top: 132px;
-  left: 36px;
+  top: 22%;
+  left: 4%;
 }
 
 .about__action--tg {
-  top: 312px;
-  right: 20px;
+  top: 48%;
+  right: 4%;
 }
 
 .about__action-icon {
@@ -232,32 +232,6 @@ a {
 
 .about__action-label {
   white-space: nowrap;
-}
-
-@media (max-width: 880px) {
-  .about__action--cv {
-    left: 8px;
-  }
-
-  .about__action--tg {
-    right: 8px;
-  }
-}
-
-@media (max-width: 520px) {
-  .about__action {
-    top: auto;
-    bottom: 8px;
-    transform: none;
-  }
-
-  .about__action--cv {
-    left: 16px;
-  }
-
-  .about__action--tg {
-    right: 16px;
-  }
 }
 
 .about__content {
@@ -428,13 +402,12 @@ a {
   align-items: center;
   justify-content: center;
   width: 108px;
-  height: 40px;
+  padding: 10px 0px;
   border-radius: 8px;
   background: var(--button-secondary-bg);
   color: var(--button-secondary-text);
   font-size: var(--font-size-15);
   font-weight: var(--font-weight-medium);
+  letter-spacing: 0.01em;
   text-transform: uppercase;
-  text-decoration: none;
 }
-

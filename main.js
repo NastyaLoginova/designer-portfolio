@@ -5,7 +5,7 @@ const CONFIG = {
     { id: 'contacts', label: 'СВЯЗАТЬСЯ', href: '#contacts' },
   ],
   links: {
-    cv: 'https://www.google.com/',
+    cv: 'assets/cv.pdf',
     tg: 'https://t.me/NastyaLoginova',
   },
   profile: {
@@ -340,7 +340,7 @@ function createFooterSection() {
   });
   const text2 = createElement('p', {
     className: 'footer-section__subtitle',
-    text: 'Буду рада обсудить с вами проект',
+    text: 'Буду рада обсудить с Вами проект',
   });
 
   content.appendChild(text1);
@@ -349,7 +349,7 @@ function createFooterSection() {
   const buttonsWrapper = createElement('div', { className: 'footer-section__buttons' });
 
   const buttonsConfig = [
-    { label: 'CV', href: 'https://www.google.com/' },
+    { label: 'CV', href: 'assets/cv.pdf' },
     { label: 'TELEGRAM', href: 'https://t.me/NastyaLoginova' },
     { label: 'LINKEDIN', href: 'https://www.google.com/' }
   ];
@@ -444,28 +444,14 @@ function updateActiveNav() {
   }
 }
 
-function updateDotGridStep() {
-  const width = window.innerWidth;
-  const innerWidth = Math.max(width - 40, 0);
-  if (!innerWidth) return;
-
-  const minStep = 92;
-  const columns = Math.max(Math.floor(innerWidth / minStep), 1);
-  const step = Math.round(innerWidth / columns);
-
-  document.documentElement.style.setProperty('--dot-step', `${step}px`);
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   init();
   updateHeaderMetrics();
-  updateDotGridStep();
   updateActiveNav();
 });
 
 window.addEventListener('resize', () => {
   updateHeaderMetrics();
-  updateDotGridStep();
 });
 
 window.addEventListener('scroll', updateActiveNav);
