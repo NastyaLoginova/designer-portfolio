@@ -2,7 +2,7 @@ const CONFIG = {
   nav: [
     { id: 'about', label: 'ОБО МНЕ', href: '#about' },
     { id: 'cases', label: 'КЕЙСЫ', href: '#cases' },
-    { id: 'contacts', label: 'СВЯЗАТЬСЯ', href: '#contacts' },
+    { id: 'contacts', label: 'КОНТАКТЫ', href: '#contacts' },
   ],
   links: {
     cv: 'assets/cv.pdf',
@@ -47,7 +47,7 @@ const CONFIG = {
       title: 'Петрович',
       description:
         'Рефакторинг корзины. Спроектировала новые сценарии покупки: подбор аналогов, сопутсвующих товаров, добавление услуг монтажа.',
-      media: 'assets/oskelly.mp4',
+      media: 'assets/petrovich.mp4',
       isExpandable: true,
       link: 'https://www.google.com/',
     },
