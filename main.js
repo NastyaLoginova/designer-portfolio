@@ -2,10 +2,10 @@ const CONFIG = {
   nav: [
     { id: 'about', label: 'ОБО МНЕ', href: '#about' },
     { id: 'cases', label: 'КЕЙСЫ', href: '#cases' },
-    { id: 'contacts', label: 'СВЯЗАТЬСЯ', href: '#contacts' },
+    { id: 'contacts', label: 'КОНТАКТЫ', href: '#contacts' },
   ],
   links: {
-    cv: 'https://www.google.com/',
+    cv: 'assets/cv.pdf',
     tg: 'https://t.me/NastyaLoginova',
   },
   profile: {
@@ -29,7 +29,7 @@ const CONFIG = {
       title: 'Петрович',
       description:
         'Перевод каталога в маркетплейс‑модель. Спроектировала новый листинг и карточку товара в условиях сложной категорийной структуры. Фокус — конверсия в add‑to‑cart и масштабируемость решения.',
-      media: 'assets/oskelly.mp4',
+      media: 'assets/petrovich.mp4',
       isExpandable: true,
       link: 'https://www.google.com/',
     },
@@ -43,11 +43,11 @@ const CONFIG = {
       link: 'https://www.google.com/',
     },
     {
-      id: 'petrovich_1',
+      id: 'petrovich_2',
       title: 'Петрович',
       description:
         'Рефакторинг корзины. Спроектировала новые сценарии покупки: подбор аналогов, сопутсвующих товаров, добавление услуг монтажа.',
-      media: 'assets/oskelly.mp4',
+      media: 'assets/petrovich.mp4',
       isExpandable: true,
       link: 'https://www.google.com/',
     },
@@ -56,7 +56,7 @@ const CONFIG = {
       title: 'Grow Food',
       description:
         'Редизайн профиля и проектирование программы лояльности в рамках обновления продукта. Работала в заданной архитектуре, интегрируя новую механику в существующий пользовательский сценарий.',
-      media: 'assets/oskelly.mp4',
+      media: 'assets/growfood.mp4',
       isExpandable: false,
       link: 'https://www.google.com/',
     },
@@ -269,11 +269,16 @@ function createCasesSection(cases) {
       className: 'case',
     });
 
-    const media = createElement('img', {
+    const media = createElement('video', {
       className: 'case__media',
       attrs: {
         src: item.media,
         alt: item.title,
+        autoplay: true,
+        loop: true,
+        muted: true,
+        preload: 'auto',
+        playsinline: true,
       },
     });
 
@@ -340,7 +345,7 @@ function createFooterSection() {
   });
   const text2 = createElement('p', {
     className: 'footer-section__subtitle',
-    text: 'Буду рада обсудить с вами проект',
+    text: 'Буду рада обсудить с Вами проект',
   });
 
   content.appendChild(text1);
@@ -349,7 +354,7 @@ function createFooterSection() {
   const buttonsWrapper = createElement('div', { className: 'footer-section__buttons' });
 
   const buttonsConfig = [
-    { label: 'CV', href: 'https://www.google.com/' },
+    { label: 'CV', href: 'assets/cv.pdf' },
     { label: 'TELEGRAM', href: 'https://t.me/NastyaLoginova' },
     { label: 'LINKEDIN', href: 'https://www.google.com/' }
   ];
@@ -444,28 +449,31 @@ function updateActiveNav() {
   }
 }
 
-function updateDotGridStep() {
-  const width = window.innerWidth;
-  const innerWidth = Math.max(width - 40, 0);
-  if (!innerWidth) return;
+function initVideosAutoplay() {
+  const videos = document.querySelectorAll('video');
+  if (!videos.length) return;
 
-  const minStep = 92;
-  const columns = Math.max(Math.floor(innerWidth / minStep), 1);
-  const step = Math.round(innerWidth / columns);
-
-  document.documentElement.style.setProperty('--dot-step', `${step}px`);
+  videos.forEach((video) => {
+    if (!(video instanceof HTMLVideoElement)) return;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => {});
+    }
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   init();
   updateHeaderMetrics();
-  updateDotGridStep();
   updateActiveNav();
+  initVideosAutoplay();
 });
 
 window.addEventListener('resize', () => {
   updateHeaderMetrics();
-  updateDotGridStep();
 });
 
 window.addEventListener('scroll', updateActiveNav);
