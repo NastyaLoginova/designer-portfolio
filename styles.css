@@ -438,3 +438,24 @@ a {
   text-decoration: none;
 }
 
+/* Cat sprite */
+
+.cat {
+  --display-size: 200px;
+  width: var(--display-size);
+  height: var(--display-size);
+
+  background-image: url('assets/cat.png');
+  background-repeat: no-repeat;
+  background-position: 0 0; /* x animated by keyframes, y set from JS */
+  image-rendering: pixelated;
+  /* place in flow of footer and center under buttons */
+  display: block;
+  margin: 24px auto 0;
+  pointer-events: auto;
+}
+
+@keyframes play {
+  to { background-position-x: var(--anim-distance, 0px); }
+}
+

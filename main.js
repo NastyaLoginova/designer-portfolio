@@ -367,7 +367,13 @@ function createFooterSection() {
     buttonsWrapper.appendChild(button);
   });
 
+  const cat = createElement('div', {
+    className: 'cat',
+    attrs: { id: 'cat', 'aria-hidden': 'true' },
+  });
+
   content.appendChild(buttonsWrapper);
+  content.appendChild(cat);
   wrapper.appendChild(content);
   section.appendChild(wrapper);
 
@@ -461,6 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateHeaderMetrics();
   updateDotGridStep();
   updateActiveNav();
+  initializeCat();
 });
 
 window.addEventListener('resize', () => {
@@ -505,5 +512,114 @@ function setupNavigationScroll() {
         }
       }
     });
+  });
+}
+
+const states_short = {
+  sit: { frames: 20, row: 0, duration: 1.5 },
+};
+
+const states_long = {
+  sit: { frames: 60, row: 1, duration: 4.5 },
+};
+const DISPLAY_PX = 224;
+
+let _catCurrentState = 'sit';
+let _catShortStartTime = 0;
+let _catIsLongPlaying = false;
+
+function playShort(stateName) {
+  const el = document.getElementById('cat');
+  if (!el) return;
+  const s = states_short[stateName] || states_short.sit;
+
+  const totalFrames = s.frames || 1;
+  const duration = s.duration || 5;
+
+  el.style.backgroundPositionX = `0px`;
+  el.style.backgroundPositionY = `${-s.row * DISPLAY_PX}px`;
+
+  const animDistance = -totalFrames * DISPLAY_PX;
+  el.style.setProperty('--anim-distance', `${animDistance}px`);
+
+  el.style.animation = 'none';
+  el.offsetWidth;
+  el.style.animation = `play ${duration}s steps(${totalFrames}) infinite`;
+
+  _catShortStartTime = performance.now();
+  _catCurrentState = stateName;
+}
+
+function playLong(stateName, startFrame = 0) {
+  const el = document.getElementById('cat');
+  if (!el) return;
+  const l = states_long[stateName] || states_long.sit;
+
+  _catIsLongPlaying = true;
+  el.style.pointerEvents = 'none';
+
+  const totalFrames = l.frames || 1;
+  const duration = l.duration || 5;
+
+  const remainingFrames = totalFrames - startFrame;
+  const frameDuration = duration / totalFrames;
+  const remainingDuration = remainingFrames * frameDuration;
+
+  const startX = -startFrame * DISPLAY_PX;
+  el.style.backgroundPositionX = `${startX}px`;
+
+  el.style.backgroundPositionY = `${-l.row * DISPLAY_PX}px`;
+
+  const deltaX = -remainingFrames * DISPLAY_PX;
+  const endX = startX + deltaX;
+
+  el.style.setProperty('--anim-distance', `${endX}px`);
+
+  el.style.animation = 'none';
+  el.offsetWidth;
+  el.style.animation = `play ${remainingDuration}s steps(${remainingFrames}) 1`;
+
+  const onEnd = () => {
+    el.removeEventListener('animationend', onEnd);
+    _catIsLongPlaying = false;
+    el.style.pointerEvents = '';
+    playShort(stateName);
+  };
+
+  el.addEventListener('animationend', onEnd);
+}
+
+function initializeCat() {
+  const el = document.getElementById('cat');
+  if (!el) return;
+  const FRAME_PX = 450;
+
+  const img = new Image();
+  img.src = 'assets/cat.png';
+  img.onload = () => {
+    const scale = DISPLAY_PX / FRAME_PX;
+    const bgW = img.naturalWidth * scale;
+    const bgH = img.naturalHeight * scale;
+    el.style.width = `${DISPLAY_PX}px`;
+    el.style.height = `${DISPLAY_PX}px`;
+    el.style.backgroundSize = `${bgW}px ${bgH}px`;
+
+    playShort('sit');
+  };
+
+  el.addEventListener('click', () => {
+    if (_catIsLongPlaying) return;
+    const stateName = _catCurrentState || 'sit';
+    const s = states_short[stateName] || states_short.sit;
+    const duration = s.duration || 5;
+    const frames = s.frames || 1;
+    const frameDuration = duration / frames;
+
+    
+    const startTime = _catShortStartTime || performance.now();
+    const elapsed = (performance.now() - startTime) / 1000;
+    const frameIndex = Math.floor(((elapsed % duration) / frameDuration)) % frames;
+
+    playLong(stateName, frameIndex);
   });
 }
