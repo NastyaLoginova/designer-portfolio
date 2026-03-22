@@ -114,8 +114,7 @@ function createHeader(navItems) {
     });
 
     const link = createElement('a', {
-      className:
-        'site-header__link' + (index === 0 ? ' site-header__link--active' : ''),
+      className: 'site-header__link',
       text: item.label,
       attrs: { href: item.href },
     });
@@ -425,49 +424,6 @@ function updateHeaderMetrics() {
   document.documentElement.style.setProperty('--header-height', `${height}px`);
 }
 
-function updateActiveNav() {
-  const links = Array.from(document.querySelectorAll('.site-header__link'));
-  if (!links.length) return;
-
-  const sections = links
-    .map((link) => {
-      const href = link.getAttribute('href') || '';
-      if (!href.startsWith('#') || href.length === 1) return null;
-      const section = document.querySelector(href);
-      if (!section) return null;
-      return { link, section };
-    })
-    .filter(Boolean);
-
-  if (!sections.length) return;
-
-  let activeLink = sections[0].link;
-  let minDist = Infinity;
-
-  const styles = getComputedStyle(document.documentElement);
-  const headerTop = parseFloat(styles.getPropertyValue('--header-top')) || 0;
-  const headerHeight =
-    parseFloat(styles.getPropertyValue('--header-height')) || 0;
-  const offset = headerTop + headerHeight + 1;
-
-  sections.forEach(({ link, section }) => {
-    const rect = section.getBoundingClientRect();
-    const top = rect.top;
-    const bottom = rect.bottom;
-    if (bottom <= offset) return;
-    const dist = Math.abs(top - offset);
-    if (dist < minDist) {
-      minDist = dist;
-      activeLink = link;
-    }
-  });
-
-  links.forEach((link) => link.classList.remove('site-header__link--active'));
-  if (activeLink) {
-    activeLink.classList.add('site-header__link--active');
-  }
-}
-
 function initVideosAutoplay() {
   const videos = document.querySelectorAll('video');
   if (!videos.length) return;
@@ -487,7 +443,6 @@ function initVideosAutoplay() {
 document.addEventListener('DOMContentLoaded', () => {
   init();
   updateHeaderMetrics();
-  updateActiveNav();
   initVideosAutoplay();
   initializeCat();
 });
@@ -495,8 +450,6 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('resize', () => {
   updateHeaderMetrics();
 });
-
-window.addEventListener('scroll', updateActiveNav);
 
 function setupNavigationScroll() {
   const links = document.querySelectorAll('.site-header__link');
