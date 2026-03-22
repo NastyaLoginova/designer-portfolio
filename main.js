@@ -1,4 +1,5 @@
 const CONFIG = {
+  yandexMetrikaId: 108181957,
   nav: [
     { id: 'about', label: 'ОБО МНЕ', href: '#about' },
     { id: 'cases', label: 'КЕЙСЫ', href: '#cases' },
@@ -30,7 +31,6 @@ const CONFIG = {
       description:
         'Перевод каталога в маркетплейс‑модель. Спроектировала новый листинг и карточку товара в условиях сложной категорийной структуры. Фокус — конверсия в add‑to‑cart и масштабируемость решения.',
       media: 'assets/petrovich.mp4',
-      isExpandable: true,
       link: 'https://www.google.com/',
     },
     {
@@ -39,7 +39,6 @@ const CONFIG = {
       description:
         'Концепция shop-in-shop раздела BEEGZ внутри экосистемы Oskelly. Разработала визуальную модель и UI-принципыдля выделения streetwear-направления в рамках существующей дизайн-системы.',
       media: 'assets/oskelly.mp4',
-      isExpandable: false,
       link: 'https://www.google.com/',
     },
     {
@@ -47,8 +46,7 @@ const CONFIG = {
       title: 'Петрович',
       description:
         'Рефакторинг корзины. Спроектировала новые сценарии покупки: подбор аналогов, сопутсвующих товаров, добавление услуг монтажа.',
-      media: 'assets/petrovich.mp4',
-      isExpandable: true,
+      media: 'assets/oskelly.mp4',
       link: 'https://www.google.com/',
     },
     {
@@ -57,8 +55,7 @@ const CONFIG = {
       description:
         'Редизайн профиля и проектирование программы лояльности в рамках обновления продукта. Работала в заданной архитектуре, интегрируя новую механику в существующий пользовательский сценарий.',
       media: 'assets/growfood.mp4',
-      isExpandable: false,
-      link: 'https://www.google.com/',
+      link: null,
     },
       {
       id: 'securOS',
@@ -66,7 +63,6 @@ const CONFIG = {
       description:
         'Развитие операторского интерфейса: дополняла продукт новыми фичами и улучшала сценарии обработки событий на основе фидбека операторов ситуационных центров.',
       media: 'assets/oskelly.mp4',
-      isExpandable: true,
       link: 'https://www.google.com/',
     },
   ],
@@ -118,8 +114,7 @@ function createHeader(navItems) {
     });
 
     const link = createElement('a', {
-      className:
-        'site-header__link' + (index === 0 ? ' site-header__link--active' : ''),
+      className: 'site-header__link',
       text: item.label,
       attrs: { href: item.href },
     });
@@ -305,8 +300,12 @@ function createCasesSection(cases) {
       },
     });
 
+    button.addEventListener('click', () => {
+      ym(CONFIG.yandexMetrikaId, 'reachGoal', 'read_case_click', { case_id: item.id });
+    });
+
     headerRow.appendChild(title);
-    if (item.isExpandable) {
+    if (item.link != null) {
         headerRow.appendChild(button);
     }
 
@@ -372,7 +371,26 @@ function createFooterSection() {
     buttonsWrapper.appendChild(button);
   });
 
+  const cat = createElement('div', {
+    className: 'cat',
+    attrs: { id: 'cat', 'aria-hidden': 'true' },
+  });
+
+  const caption = createElement('div', { className: 'cat__caption' });
+  const captionText = createElement('span', {
+    className: 'cat__caption-text',
+    text: 'Кот отвечает за настроение',
+  });
+  const captionIcon = createElement('img', {
+    className: 'cat__caption-icon',
+    attrs: { src: 'assets/heart.svg', alt: 'heart' },
+  });
+  caption.appendChild(captionText);
+  caption.appendChild(captionIcon);
+
   content.appendChild(buttonsWrapper);
+  content.appendChild(cat);
+  content.appendChild(caption);
   wrapper.appendChild(content);
   section.appendChild(wrapper);
 
@@ -406,49 +424,6 @@ function updateHeaderMetrics() {
   document.documentElement.style.setProperty('--header-height', `${height}px`);
 }
 
-function updateActiveNav() {
-  const links = Array.from(document.querySelectorAll('.site-header__link'));
-  if (!links.length) return;
-
-  const sections = links
-    .map((link) => {
-      const href = link.getAttribute('href') || '';
-      if (!href.startsWith('#') || href.length === 1) return null;
-      const section = document.querySelector(href);
-      if (!section) return null;
-      return { link, section };
-    })
-    .filter(Boolean);
-
-  if (!sections.length) return;
-
-  let activeLink = sections[0].link;
-  let minDist = Infinity;
-
-  const styles = getComputedStyle(document.documentElement);
-  const headerTop = parseFloat(styles.getPropertyValue('--header-top')) || 0;
-  const headerHeight =
-    parseFloat(styles.getPropertyValue('--header-height')) || 0;
-  const offset = headerTop + headerHeight + 1;
-
-  sections.forEach(({ link, section }) => {
-    const rect = section.getBoundingClientRect();
-    const top = rect.top;
-    const bottom = rect.bottom;
-    if (bottom <= offset) return;
-    const dist = Math.abs(top - offset);
-    if (dist < minDist) {
-      minDist = dist;
-      activeLink = link;
-    }
-  });
-
-  links.forEach((link) => link.classList.remove('site-header__link--active'));
-  if (activeLink) {
-    activeLink.classList.add('site-header__link--active');
-  }
-}
-
 function initVideosAutoplay() {
   const videos = document.querySelectorAll('video');
   if (!videos.length) return;
@@ -468,15 +443,13 @@ function initVideosAutoplay() {
 document.addEventListener('DOMContentLoaded', () => {
   init();
   updateHeaderMetrics();
-  updateActiveNav();
   initVideosAutoplay();
+  initializeCat();
 });
 
 window.addEventListener('resize', () => {
   updateHeaderMetrics();
 });
-
-window.addEventListener('scroll', updateActiveNav);
 
 function setupNavigationScroll() {
   const links = document.querySelectorAll('.site-header__link');
@@ -513,5 +486,140 @@ function setupNavigationScroll() {
         }
       }
     });
+  });
+}
+
+const states_short = {
+  sit: { frames: 20, row: 0, duration: 1.5 },
+};
+
+const states_long = {
+  sit: { frames: 60, row: 1, duration: 4.5 },
+};
+const DISPLAY_PX = 224;
+
+let _catCurrentState = 'sit';
+let _catShortStartTime = 0;
+let _catIsLongPlaying = false;
+
+function playShort(stateName) {
+  const el = document.getElementById('cat');
+  if (!el) return;
+  const s = states_short[stateName] || states_short.sit;
+
+  const totalFrames = s.frames || 1;
+  const duration = s.duration || 5;
+
+  el.style.backgroundPositionX = `0px`;
+  el.style.backgroundPositionY = `${-s.row * DISPLAY_PX}px`;
+
+  const animDistance = -totalFrames * DISPLAY_PX;
+  el.style.setProperty('--anim-distance', `${animDistance}px`);
+
+  el.style.animation = 'none';
+  el.offsetWidth;
+  el.style.animation = `play ${duration}s steps(${totalFrames}) infinite`;
+
+  _catShortStartTime = performance.now();
+  _catCurrentState = stateName;
+}
+
+function playLong(stateName, startFrame = 0) {
+  const el = document.getElementById('cat');
+  if (!el) return;
+  const l = states_long[stateName] || states_long.sit;
+
+  _catIsLongPlaying = true;
+  el.style.pointerEvents = 'none';
+
+  const totalFrames = l.frames || 1;
+  const duration = l.duration || 5;
+
+  const remainingFrames = totalFrames - startFrame;
+  const frameDuration = duration / totalFrames;
+  const remainingDuration = remainingFrames * frameDuration;
+
+  const startX = -startFrame * DISPLAY_PX;
+  el.style.backgroundPositionX = `${startX}px`;
+
+  el.style.backgroundPositionY = `${-l.row * DISPLAY_PX}px`;
+
+  const deltaX = -remainingFrames * DISPLAY_PX;
+  const endX = startX + deltaX;
+
+  el.style.setProperty('--anim-distance', `${endX}px`);
+
+  el.style.animation = 'none';
+  el.offsetWidth;
+  el.style.animation = `play ${remainingDuration}s steps(${remainingFrames}) 1`;
+
+  const onEnd = () => {
+    el.removeEventListener('animationend', onEnd);
+    _catIsLongPlaying = false;
+    el.style.pointerEvents = '';
+    playShort(stateName);
+  };
+
+  el.addEventListener('animationend', onEnd);
+}
+
+function initializeCat() {
+  const el = document.getElementById('cat');
+  if (!el) return;
+  const FRAME_PX = 450;
+
+  const img = new Image();
+  img.src = 'assets/cat.png';
+  img.onload = () => {
+    const scale = DISPLAY_PX / FRAME_PX;
+    const bgW = img.naturalWidth * scale;
+    const bgH = img.naturalHeight * scale;
+    el.style.width = `${DISPLAY_PX}px`;
+    el.style.height = `${DISPLAY_PX}px`;
+    el.style.backgroundSize = `${bgW}px ${bgH}px`;
+
+    const catCursor = createElement('div', { className: 'cat-cursor' });
+    const ccText = createElement('span', {
+      className: 'cat-cursor-text',
+      text: 'Погладить',
+    });
+    const ccIcon = createElement('img', {
+      className: 'cat-cursor-icon',
+      attrs: { src: 'assets/pet.svg', alt: 'pet' },
+    });
+    catCursor.appendChild(ccText);
+    catCursor.appendChild(ccIcon);
+    document.body.appendChild(catCursor);
+
+    playShort('sit', 0);
+
+    el.addEventListener('mouseenter', () => {
+      catCursor.style.display = 'flex';
+    });
+    el.addEventListener('mousemove', (e) => {
+      catCursor.style.left = `${e.clientX}px`;
+      catCursor.style.top = `${e.clientY}px`;
+    });
+    el.addEventListener('mouseleave', () => {
+      catCursor.style.display = 'none';
+    });
+  };
+
+  el.addEventListener('click', () => {
+    if (_catIsLongPlaying) return;
+    const stateName = _catCurrentState || 'sit';
+    const s = states_short[stateName] || states_short.sit;
+    const duration = s.duration || 5;
+    const frames = s.frames || 1;
+    const frameDuration = duration / frames;
+
+    
+    const startTime = _catShortStartTime || performance.now();
+    const elapsed = (performance.now() - startTime) / 1000;
+    const frameIndex = Math.floor(((elapsed % duration) / frameDuration)) % frames;
+
+    ym(CONFIG.yandexMetrikaId, 'reachGoal', 'cat_click');
+
+    playLong(stateName, frameIndex);
   });
 }
