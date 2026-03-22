@@ -1,4 +1,5 @@
 const CONFIG = {
+  yandexMetrikaId: 108181957,
   nav: [
     { id: 'about', label: 'ОБО МНЕ', href: '#about' },
     { id: 'cases', label: 'КЕЙСЫ', href: '#cases' },
@@ -30,7 +31,6 @@ const CONFIG = {
       description:
         'Перевод каталога в маркетплейс‑модель. Спроектировала новый листинг и карточку товара в условиях сложной категорийной структуры. Фокус — конверсия в add‑to‑cart и масштабируемость решения.',
       media: 'assets/oskelly.mp4',
-      isExpandable: true,
       link: 'https://www.google.com/',
     },
     {
@@ -39,7 +39,6 @@ const CONFIG = {
       description:
         'Концепция shop-in-shop раздела BEEGZ внутри экосистемы Oskelly. Разработала визуальную модель и UI-принципыдля выделения streetwear-направления в рамках существующей дизайн-системы.',
       media: 'assets/oskelly.mp4',
-      isExpandable: false,
       link: 'https://www.google.com/',
     },
     {
@@ -48,7 +47,6 @@ const CONFIG = {
       description:
         'Рефакторинг корзины. Спроектировала новые сценарии покупки: подбор аналогов, сопутсвующих товаров, добавление услуг монтажа.',
       media: 'assets/oskelly.mp4',
-      isExpandable: true,
       link: 'https://www.google.com/',
     },
     {
@@ -57,8 +55,7 @@ const CONFIG = {
       description:
         'Редизайн профиля и проектирование программы лояльности в рамках обновления продукта. Работала в заданной архитектуре, интегрируя новую механику в существующий пользовательский сценарий.',
       media: 'assets/oskelly.mp4',
-      isExpandable: false,
-      link: 'https://www.google.com/',
+      link: null,
     },
       {
       id: 'securOS',
@@ -66,7 +63,6 @@ const CONFIG = {
       description:
         'Развитие операторского интерфейса: дополняла продукт новыми фичами и улучшала сценарии обработки событий на основе фидбека операторов ситуационных центров.',
       media: 'assets/oskelly.mp4',
-      isExpandable: true,
       link: 'https://www.google.com/',
     },
   ],
@@ -300,8 +296,12 @@ function createCasesSection(cases) {
       },
     });
 
+    button.addEventListener('click', () => {
+      ym(CONFIG.yandexMetrikaId, 'reachGoal', 'read_case_click', { case_id: item.id });
+    });
+
     headerRow.appendChild(title);
-    if (item.isExpandable) {
+    if (item.link != null) {
         headerRow.appendChild(button);
     }
 
@@ -619,6 +619,8 @@ function initializeCat() {
     const startTime = _catShortStartTime || performance.now();
     const elapsed = (performance.now() - startTime) / 1000;
     const frameIndex = Math.floor(((elapsed % duration) / frameDuration)) % frames;
+
+    ym(CONFIG.yandexMetrikaId, 'reachGoal', 'cat_click');
 
     playLong(stateName, frameIndex);
   });
