@@ -372,8 +372,21 @@ function createFooterSection() {
     attrs: { id: 'cat', 'aria-hidden': 'true' },
   });
 
+  const caption = createElement('div', { className: 'cat__caption' });
+  const captionText = createElement('span', {
+    className: 'cat__caption-text',
+    text: 'Кот отвечает за настроение',
+  });
+  const captionIcon = createElement('img', {
+    className: 'cat__caption-icon',
+    attrs: { src: 'assets/heart.svg', alt: 'heart' },
+  });
+  caption.appendChild(captionText);
+  caption.appendChild(captionIcon);
+
   content.appendChild(buttonsWrapper);
   content.appendChild(cat);
+  content.appendChild(caption);
   wrapper.appendChild(content);
   section.appendChild(wrapper);
 
@@ -604,7 +617,31 @@ function initializeCat() {
     el.style.height = `${DISPLAY_PX}px`;
     el.style.backgroundSize = `${bgW}px ${bgH}px`;
 
-    playShort('sit');
+    const catCursor = createElement('div', { className: 'cat-cursor' });
+    const ccText = createElement('span', {
+      className: 'cat-cursor-text',
+      text: 'Погладить',
+    });
+    const ccIcon = createElement('img', {
+      className: 'cat-cursor-icon',
+      attrs: { src: 'assets/pet.svg', alt: 'pet' },
+    });
+    catCursor.appendChild(ccText);
+    catCursor.appendChild(ccIcon);
+    document.body.appendChild(catCursor);
+
+    playShort('sit', 0);
+
+    el.addEventListener('mouseenter', () => {
+      catCursor.style.display = 'flex';
+    });
+    el.addEventListener('mousemove', (e) => {
+      catCursor.style.left = `${e.clientX}px`;
+      catCursor.style.top = `${e.clientY}px`;
+    });
+    el.addEventListener('mouseleave', () => {
+      catCursor.style.display = 'none';
+    });
   };
 
   el.addEventListener('click', () => {
