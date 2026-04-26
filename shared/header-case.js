@@ -1,0 +1,106 @@
+/**
+ * Навигация для страниц кейсов
+ */
+
+function createElement(tag, options = {}) {
+  const el = document.createElement(tag);
+  const { className, text, attrs, children } = options;
+
+  if (className) {
+    el.className = className;
+  }
+
+  if (text) {
+    el.textContent = text;
+  }
+
+  if (attrs) {
+    Object.entries(attrs).forEach(([key, value]) => {
+      if (value != null) {
+        el.setAttribute(key, value);
+      }
+    });
+  }
+
+  if (children) {
+    children.forEach((child) => {
+      if (child) {
+        el.appendChild(child);
+      }
+    });
+  }
+
+  return el;
+}
+
+/**
+ * Создает навигационную панель для кейса
+ * @param {Object} config - Конфигурация
+ * @param {string} config.caseId - ID кейса
+ * @param {string} config.caseName - Название кейса
+ * @returns {HTMLElement}
+ */
+function createCaseHeader() {
+  const header = createElement('header', {
+    className: 'case-header',
+  });
+
+  const inner = createElement('nav', {
+    className: 'case-header__inner',
+  });
+
+  // Левая часть - на главную
+  const leftItem = createElement('div', {
+    className: 'case-header__item case-header__item--home',
+  });
+  const homeLink = createElement('a', {
+    className: 'case-header__link case-header__home-link',
+    text: 'НА ГЛАВНУЮ',
+    attrs: { href: '/' },
+  });
+  leftItem.appendChild(homeLink);
+
+  const rightStack = createElement('div', { className: 'case-header__stack' });
+  const links = [
+    { label: 'CV', href: '/assets/cv.pdf' },
+    { label: 'TELEGRAM', href: 'https://t.me/NastyaLoginova' },
+    { label: 'LINKEDIN', href: 'https://www.google.com/' },
+  ];
+
+  links.forEach((item) => {
+    const stackItem = createElement('div', {
+      className: 'case-header__item case-header__item--stack',
+    });
+    const link = createElement('a', {
+      className: 'case-header__link',
+      text: item.label,
+      attrs: {
+        href: item.href,
+        target: '_blank',
+        rel: 'noopener noreferrer',
+      },
+    });
+    stackItem.appendChild(link);
+    rightStack.appendChild(stackItem);
+  });
+
+  inner.appendChild(leftItem);
+  inner.appendChild(rightStack);
+  header.appendChild(inner);
+
+  return header;
+}
+
+/**
+ * Инициализирует навигацию для кейса
+ */
+function initCaseNavigation() {
+  const homeLinks = document.querySelectorAll('.case-header__home-link');
+
+  homeLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = '/';
+    });
+  });
+}
