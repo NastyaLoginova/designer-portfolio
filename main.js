@@ -26,35 +26,35 @@ const CONFIG = {
   },
   cases: [
     {
-      id: 'petrovich_1',
+      id: 'petrovich_list',
       title: 'Петрович',
       description:
         'Перевод каталога в маркетплейс‑модель. Спроектировала новый листинг и карточку товара в условиях сложной категорийной структуры. Фокус — конверсия в add‑to‑cart и масштабируемость решения.',
-      media: 'assets/petrovich.mp4',
-      link: 'https://www.google.com/',
+      media: 'assets/main/petrovich_list.mp4',
+      link: './cases/petrovich_list/',
     },
     {
       id: 'oskelly',
       title: 'Oskelly',
       description:
         'Концепция shop-in-shop раздела BEEGZ внутри экосистемы Oskelly. Разработала визуальную модель и UI-принципыдля выделения streetwear-направления в рамках существующей дизайн-системы.',
-      media: 'assets/oskelly.mp4',
-      link: 'https://www.google.com/',
+      media: 'assets/main/oskelly.mp4',
+      link: './cases/oskelly/',
     },
     {
-      id: 'petrovich_2',
+      id: 'petrovich_cart',
       title: 'Петрович',
       description:
         'Рефакторинг корзины. Спроектировала новые сценарии покупки: подбор аналогов, сопутсвующих товаров, добавление услуг монтажа.',
-      media: 'assets/oskelly.mp4',
-      link: 'https://www.google.com/',
+      media: 'assets/main/oskelly.mp4',
+      link: null,
     },
     {
       id: 'growFood',
       title: 'Grow Food',
       description:
         'Редизайн профиля и проектирование программы лояльности в рамках обновления продукта. Работала в заданной архитектуре, интегрируя новую механику в существующий пользовательский сценарий.',
-      media: 'assets/growfood.mp4',
+      media: 'assets/main/growfood.mp4',
       link: null,
     },
       {
@@ -62,8 +62,8 @@ const CONFIG = {
       title: 'SecurOS',
       description:
         'Развитие операторского интерфейса: дополняла продукт новыми фичами и улучшала сценарии обработки событий на основе фидбека операторов ситуационных центров.',
-      media: 'assets/oskelly.mp4',
-      link: 'https://www.google.com/',
+      media: 'assets/main/oskelly.mp4',
+      link: null,
     },
   ],
 };
@@ -142,7 +142,7 @@ function createAboutSection(config) {
   const img = createElement('img', {
     className: 'about__photo',
     attrs: {
-      src: 'assets/profile-photo.png',
+      src: 'assets/main/profile-photo.png',
       alt: 'Портрет Насти Логиновой',
     },
   });
@@ -164,7 +164,7 @@ function createAboutSection(config) {
   const cvIcon = createElement('img', {
     className: 'about__action-icon',
     attrs: {
-      src: 'assets/cv_icon.svg',
+      src: 'assets/main/cv_icon.svg',
       alt: 'CV',
     },
   });
@@ -187,7 +187,7 @@ function createAboutSection(config) {
   const tgIcon = createElement('img', {
     className: 'about__action-icon',
     attrs: {
-      src: 'assets/tg_icon.svg',
+      src: 'assets/main/tg_icon.svg',
       alt: 'TG',
     },
   });
@@ -295,8 +295,6 @@ function createCasesSection(cases) {
       text: 'ЧИТАТЬ КЕЙС',
       attrs: {
         href: item.link,
-        target: '_blank',
-        rel: 'noopener noreferrer',
       },
     });
 
@@ -353,7 +351,7 @@ function createFooterSection() {
   const buttonsWrapper = createElement('div', { className: 'footer-section__buttons' });
 
   const buttonsConfig = [
-    { label: 'CV', href: 'assets/cv.pdf' },
+    { label: 'CV', href: 'assets/main/cv.pdf' },
     { label: 'TELEGRAM', href: 'https://t.me/NastyaLoginova' },
     { label: 'LINKEDIN', href: 'https://www.google.com/' }
   ];
@@ -383,7 +381,7 @@ function createFooterSection() {
   });
   const captionIcon = createElement('img', {
     className: 'cat__caption-icon',
-    attrs: { src: 'assets/heart.svg', alt: 'heart' },
+    attrs: { src: 'assets/main/heart.svg', alt: 'heart' },
   });
   caption.appendChild(captionText);
   caption.appendChild(captionIcon);
@@ -569,7 +567,7 @@ function initializeCat() {
   const FRAME_PX = 450;
 
   const img = new Image();
-  img.src = 'assets/cat.png';
+  img.src = 'assets/main/cat.png';
   img.onload = () => {
     const scale = DISPLAY_PX / FRAME_PX;
     const bgW = img.naturalWidth * scale;
@@ -585,7 +583,7 @@ function initializeCat() {
     });
     const ccIcon = createElement('img', {
       className: 'cat-cursor-icon',
-      attrs: { src: 'assets/pet.svg', alt: 'pet' },
+      attrs: { src: 'assets/main/pet.svg', alt: 'pet' },
     });
     catCursor.appendChild(ccText);
     catCursor.appendChild(ccIcon);
