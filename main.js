@@ -5,22 +5,23 @@ const CONFIG = {
     { id: 'cases', label: 'КЕЙСЫ', href: '#cases' },
     { id: 'contacts', label: 'КОНТАКТЫ', href: '#contacts' },
   ],
-  links: {
-    cv: 'assets/cv.pdf',
-    tg: 'https://t.me/NastyaLoginova',
-  },
+  links: window.PORTFOLIO_LINKS,
   profile: {
     name: 'Настя Логинова',
     description:
-      'Проектирую и развиваю цифровые продукты в e-commerce и B2B-сервисах. Веду задачи от определения проблемы и гипотез до внедрения и оценки результата.',
+      'Продуктовый дизайнер. Проектирую и развиваю цифровые продукты в e-commerce и B2B-сервисах. Веду задачи от определения проблемы и гипотез до внедрения и оценки результата.',
     experience: [
       {
-        company: 'Heads and Hands · продуктовый дизайнер',
-        period: '2024 — now',
+        company: 'Heads and Hands',
+        period: 'август 2024 — сейчас',
       },
       {
-        company: 'K‑Digital · UX/UI дизайнер',
-        period: '2023 — 2024',
+        company: 'K‑Digital',
+        period: 'январь 2023 — август 2024',
+      },
+       {
+        company: 'Я.Репетитор',
+        period: 'февраль 2023 — сентябрь 2023',
       },
     ],
   },
@@ -28,41 +29,46 @@ const CONFIG = {
     {
       id: 'petrovich_list',
       title: 'Петрович',
+      subtitle: 'Новый формат листинга',
       description:
-        'Перевод каталога в маркетплейс‑модель. Спроектировала новый листинг и карточку товара в условиях сложной категорийной структуры. Фокус — конверсия в add‑to‑cart и масштабируемость решения.',
+        'Изменила формат отображения товаров с учётом роста инфографики: усилила роль изображений и упростила структуру карточек, что положительно повлияло на конверсию.',
       media: 'assets/main/petrovich_list.mp4',
       link: './cases/petrovich_list/',
     },
     {
       id: 'oskelly',
       title: 'Oskelly',
+      subtitle: 'Концепция shop-in-shop',
       description:
-        'Концепция shop-in-shop раздела BEEGZ внутри экосистемы Oskelly. Разработала визуальную модель и UI-принципыдля выделения streetwear-направления в рамках существующей дизайн-системы.',
+        'Спроектировала модель shop-in-shop — отдельных витрин категорий с курируемым ассортиментом от бутиков. Решение позволило встроить новый сценарий «мини-магазинов» и подготовить продукт к масштабированию.',
       media: 'assets/main/oskelly.mp4',
       link: './cases/oskelly/',
     },
     {
-      id: 'petrovich_cart',
+      id: 'petrovich_services',
       title: 'Петрович',
+      subtitle: 'Концепция сервисов',
       description:
-        'Рефакторинг корзины. Спроектировала новые сценарии покупки: подбор аналогов, сопутсвующих товаров, добавление услуг монтажа.',
-      media: 'assets/main/oskelly.mp4',
+        'Спроектировала модель входа в сервисы: добавила сценарную логику, виджеты и приоритизацию, чтобы снизить случайные переходы и повысить конверсию в веб-сервисы.',
+      media: 'assets/main/petrovich_services.mp4',
       link: null,
     },
     {
       id: 'growFood',
       title: 'Grow Food',
+      subtitle: 'Редизайн профиля и программы лояльности',
       description:
-        'Редизайн профиля и проектирование программы лояльности в рамках обновления продукта. Работала в заданной архитектуре, интегрируя новую механику в существующий пользовательский сценарий.',
+        'В рамках редизайна приложения спроектировала профиль, отзывы и программу лояльности. Работала в заданной архитектуре, интегрировала новые механики в существующий продукт.',
       media: 'assets/main/growfood.mp4',
       link: null,
     },
       {
       id: 'securOS',
       title: 'SecurOS',
+      subtitle: 'Развитие операторского интерфейса',
       description:
-        'Развитие операторского интерфейса: дополняла продукт новыми фичами и улучшала сценарии обработки событий на основе фидбека операторов ситуационных центров.',
-      media: 'assets/main/oskelly.mp4',
+        'Дополняла продукт новыми фичами и улучшала сценарии обработки событий на основе фидбека операторов ситуационных центров.',
+      media: 'assets/main/securos.png',
       link: null,
     },
   ],
@@ -195,8 +201,8 @@ function createAboutSection(config) {
   tgButton.appendChild(tgIcon);
 
   photoWrapper.appendChild(photoCard);
-  photoWrapper.appendChild(cvButton);
-  photoWrapper.appendChild(tgButton);
+  // photoWrapper.appendChild(cvButton);
+  // photoWrapper.appendChild(tgButton);
 
   // Текстовая часть
   const content = createElement('div', { className: 'about__content' });
@@ -264,18 +270,29 @@ function createCasesSection(cases) {
       className: 'case',
     });
 
-    const media = createElement('video', {
-      className: 'case__media',
-      attrs: {
-        src: item.media,
-        alt: item.title,
-        autoplay: true,
-        loop: true,
-        muted: true,
-        preload: 'auto',
-        playsinline: true,
-      },
-    });
+    const mediaPath = (item.media || '').toLowerCase();
+    const isVideo = mediaPath.endsWith('.mp4');
+    const media = isVideo
+      ? createElement('video', {
+          className: 'case__media',
+          attrs: {
+            src: item.media,
+            autoplay: true,
+            loop: true,
+            muted: true,
+            preload: 'auto',
+            playsinline: true,
+          },
+        })
+      : createElement('img', {
+          className: 'case__media',
+          attrs: {
+            src: item.media,
+            alt: item.title,
+            loading: 'lazy',
+            decoding: 'async',
+          },
+        });
 
     const content = createElement('div', {
       className: 'case__content',
@@ -286,9 +303,16 @@ function createCasesSection(cases) {
     const headerRow = createElement('div', {
       className: 'case__header',
     });
-    const title = createElement('h3', {
-      className: 'card__title',
+    const lead = createElement('div', {
+      className: 'case__lead',
+    });
+    const title = createElement('p', {
+      className: 'case__lead-title',
       text: item.title,
+    });
+    const subtitle = createElement('h3', {
+      className: 'case__lead-subtitle',
+      text: item.subtitle,
     });
     const button = createElement('a', {
       className: 'case__button',
@@ -298,13 +322,20 @@ function createCasesSection(cases) {
       },
     });
 
-    button.addEventListener('click', () => {
-      ym(CONFIG.yandexMetrikaId, 'reachGoal', 'read_case_click', { case_id: item.id });
-    });
-
-    headerRow.appendChild(title);
     if (item.link != null) {
-        headerRow.appendChild(button);
+      button.addEventListener('click', () => {
+        ym(CONFIG.yandexMetrikaId, 'reachGoal', 'read_case_click', { case_id: item.id });
+      });
+    }
+
+    lead.appendChild(title);
+    if (item.subtitle) {
+      lead.appendChild(subtitle);
+    }
+
+    headerRow.appendChild(lead);
+    if (item.link != null) {
+      headerRow.appendChild(button);
     }
 
     const text = createElement('p', {
@@ -351,9 +382,9 @@ function createFooterSection() {
   const buttonsWrapper = createElement('div', { className: 'footer-section__buttons' });
 
   const buttonsConfig = [
-    { label: 'CV', href: 'assets/main/cv.pdf' },
-    { label: 'TELEGRAM', href: 'https://t.me/NastyaLoginova' },
-    { label: 'LINKEDIN', href: 'https://www.google.com/' }
+    { label: 'CV', href: CONFIG.links.cv },
+    { label: 'TELEGRAM', href: CONFIG.links.tg },
+    { label: 'LINKEDIN', href: CONFIG.links.linkedin }
   ];
 
   buttonsConfig.forEach(btn => {
@@ -383,8 +414,8 @@ function createFooterSection() {
     className: 'cat__caption-icon',
     attrs: { src: 'assets/main/heart.svg', alt: 'heart' },
   });
-  caption.appendChild(captionText);
-  caption.appendChild(captionIcon);
+  // caption.appendChild(captionText);
+  // caption.appendChild(captionIcon);
 
   content.appendChild(buttonsWrapper);
   content.appendChild(cat);

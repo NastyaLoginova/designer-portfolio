@@ -41,6 +41,9 @@ function createElement(tag, options = {}) {
  * @returns {HTMLElement}
  */
 function createCaseHeader() {
+  const linksConfig = window.PORTFOLIO_LINKS;
+  const homeHref = getHomeHref();
+
   const header = createElement('header', {
     className: 'case-header',
   });
@@ -56,15 +59,15 @@ function createCaseHeader() {
   const homeLink = createElement('a', {
     className: 'case-header__link case-header__home-link',
     text: 'НА ГЛАВНУЮ',
-    attrs: { href: '/' },
+    attrs: { href: homeHref },
   });
   leftItem.appendChild(homeLink);
 
   const rightStack = createElement('div', { className: 'case-header__stack' });
   const links = [
-    { label: 'CV', href: '/assets/cv.pdf' },
-    { label: 'TELEGRAM', href: 'https://t.me/NastyaLoginova' },
-    { label: 'LINKEDIN', href: 'https://www.google.com/' },
+    { label: 'CV', href: linksConfig.cv },
+    { label: 'TELEGRAM', href: linksConfig.tg },
+    { label: 'LINKEDIN', href: linksConfig.linkedin },
   ];
 
   links.forEach((item) => {
@@ -96,11 +99,32 @@ function createCaseHeader() {
  */
 function initCaseNavigation() {
   const homeLinks = document.querySelectorAll('.case-header__home-link');
+  const homeHref = getHomeHref();
 
   homeLinks.forEach((link) => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      window.location.href = '/';
+      window.location.href = homeHref;
     });
   });
+}
+
+function getHomeHref() {
+  const { protocol, pathname } = window.location;
+
+  if (protocol === 'file:') {
+    const fileParts = pathname.split('/cases/');
+    if (fileParts.length > 1) {
+      return `${fileParts[0]}/index.html`;
+    }
+    return '../../index.html';
+  }
+
+  const pathParts = pathname.split('/cases/');
+  if (pathParts.length > 1) {
+    const basePath = pathParts[0] || '';
+    return `${basePath}/index.html`;
+  }
+
+  return '/';
 }

@@ -83,7 +83,7 @@ a {
   display: flex;
   justify-content: center;
 
-  padding: 0 24px;
+  /* padding: 0 40px; */
   pointer-events: none;
 }
 
@@ -95,7 +95,7 @@ a {
   width: 624px;
   max-width: 100%;
 
-  padding: 0 24px;
+  padding: 0 56px;
 
   border-radius: 8px;
   background: var(--card-bg);
@@ -115,7 +115,7 @@ a {
 .site-header__link {
   font-size: var(--font-size-15);
   line-height: var(--line-height-15);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-medium);
   text-transform: uppercase;
   color: var(--text-color);
   position: relative;
@@ -183,7 +183,7 @@ a {
 
 .about__photo-card {
   position: relative;
-  width: 624px;
+  width: 564px;
   max-width: 100%;
   display: flex;
   align-items: flex-start;
@@ -208,7 +208,7 @@ a {
   background: var(--button-bg);
   color: var(--button-text);
   font-size: var(--font-size-15);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-medium);
   letter-spacing: 0.01em;
   text-transform: uppercase;
 }
@@ -275,7 +275,6 @@ a {
   font-size: var(--font-size-15);
   line-height: var(--line-height-15);
   font-weight: var(--font-weight-regular);
-  letter-spacing: 0.01em;
   color: #484848;
 }
 
@@ -312,9 +311,18 @@ a {
 }
 
 .case__media {
+  object-fit: contain;
+}
+
+.case img.case__media {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.case video.case__media {
   width: 280px;
   height: 560px;
-  object-fit: contain;
   border-radius: 50px;
 }
 
@@ -330,9 +338,34 @@ a {
 
 .case__header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
+}
+
+.case__lead {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 12px;
+}
+
+.case__lead-title {
+  margin: 0;
+  font-size: var(--font-size-15);
+  line-height: var(--line-height-15);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-color);
+  opacity: 0.5;
+}
+
+.case__lead-subtitle {
+  margin: 0;
+  font-size: var(--font-size-22);
+  line-height: var(--line-height-22);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.01em;
+  color: var(--text-color);
 }
 
 .case__button {
@@ -344,10 +377,10 @@ a {
   background: #f2f2f2;
   font-size: var(--font-size-13);
   line-height: var(--line-height-13);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-medium);
   text-transform: uppercase;
   color: var(--text-color);
-  transform: translateY(-8px);
+  flex-shrink: 0;
 }
 
 .case__button:hover {
@@ -359,7 +392,7 @@ a {
 .footer-section {
   margin-top: -80px;
   padding-top: 90px;
-  padding-bottom: 108px;
+  padding-bottom: 48px;
   position: relative;
 }
 
@@ -415,7 +448,7 @@ a {
   background: var(--button-secondary-bg);
   color: var(--button-secondary-text);
   font-size: var(--font-size-15);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-medium);
   letter-spacing: 0.01em;
   text-transform: uppercase;
 }

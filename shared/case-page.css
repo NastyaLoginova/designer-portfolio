@@ -66,7 +66,7 @@
   width: 100%;
   font-size: var(--font-size-15);
   line-height: var(--line-height-15);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-medium);
   color: var(--text-color);
   text-decoration: none;
   padding: 10px 0;
@@ -79,7 +79,7 @@
 .case-main {
   max-width: 624px;
   margin: calc(var(--header-top) + var(--header-height) + 10px) auto 0px;
-  padding: 0 0px 80px;
+  padding: 0 0px 40px;
 }
 
 /* Контент кейса */
@@ -97,21 +97,21 @@
 .case-content__lead {
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
 .case-content__lead + .case-block {
-  margin-top: -16px;
+  margin-top: -28px;
 }
 
 .case-content__lead-title {
   margin: 0;
-  font-size: var(--font-size-16);
-  line-height: var(--line-height-16);
+  font-size: var(--font-size-15);
+  line-height: var(--line-height-15);
   font-weight: var(--font-weight-regular);
   letter-spacing: -0.01em;
   color: var(--text-color);
   opacity: 0.5;
+  padding-bottom: 4px;
 }
 
 .case-content__lead-subtitle {
@@ -121,6 +121,7 @@
   font-weight: var(--font-weight-medium);
   letter-spacing: -0.01em;
   color: var(--text-color);
+  padding-bottom: 12px;
 }
 
 /* Блоки контента */
@@ -159,8 +160,8 @@
 
 .case-block__text {
   margin: 0;
-  font-size: var(--font-size-16);
-  line-height: var(--line-height-16);
+  font-size: var(--font-size-15);
+  line-height: var(--line-height-15);
   color: var(--text-color);
   letter-spacing: 0.01em;
 }
@@ -172,7 +173,7 @@
 .case-block__markdown {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .case-block__text--markdown {
@@ -187,12 +188,12 @@
 }
 
 .case-block__list-item + .case-block__list-item {
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .case-block__list-item {
-  font-size: var(--font-size-16);
-  line-height: var(--line-height-16);
+  font-size: var(--font-size-15);
+  line-height: var(--line-height-15);
   color: var(--text-color);
   letter-spacing: 0.01em;
 }
@@ -265,13 +266,13 @@
   }
 
   .case-block__text {
-    font-size: var(--font-size-16);
-    line-height: var(--line-height-16);
+    font-size: var(--font-size-15);
+    line-height: var(--line-height-15);
   }
 
   .case-block__list-item {
-    font-size: var(--font-size-16);
-    line-height: var(--line-height-16);
+    font-size: var(--font-size-15);
+    line-height: var(--line-height-15);
   }
 
   .case-main {
@@ -280,7 +281,6 @@
 
   .case-content {
     gap: 40px;
-    padding: 24px;
   }
 
   .case-content__lead-title {
@@ -322,8 +322,8 @@
   }
 
   .case-intro__title {
-    font-size: var(--font-size-16);
-    line-height: var(--line-height-16);
+    font-size: var(--font-size-15);
+    line-height: var(--line-height-15);
   }
 
   .case-intro__subtitle {
@@ -341,8 +341,8 @@
   }
 
   .case-block__header {
-    font-size: var(--font-size-16);
-    line-height: var(--line-height-16);
+    font-size: var(--font-size-15);
+    line-height: var(--line-height-15);
   }
 
   .case-block__text {
@@ -369,8 +369,8 @@
   }
 
   .case-content__lead-title {
-    font-size: var(--font-size-16);
-    line-height: var(--line-height-16);
+    font-size: var(--font-size-15);
+    line-height: var(--line-height-15);
   }
 
   .case-content__lead-subtitle {
