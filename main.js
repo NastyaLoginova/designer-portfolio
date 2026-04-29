@@ -62,7 +62,7 @@ const CONFIG = {
       media: 'assets/main/growfood.mp4',
       link: null,
     },
-      {
+    {
       id: 'securOS',
       title: 'SecurOS',
       subtitle: 'Развитие операторского интерфейса',
