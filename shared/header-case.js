@@ -98,13 +98,21 @@ function createCaseHeader() {
  * Инициализирует навигацию для кейса
  */
 function initCaseNavigation() {
-  const homeLinks = document.querySelectorAll('.case-header__home-link');
   const homeHref = getHomeHref();
 
-  homeLinks.forEach((link) => {
+  document.querySelectorAll('.case-header__home-link').forEach((link) => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      window.location.href = homeHref;
+
+      const cameFromHome =
+        document.referrer &&
+        new URL(document.referrer).pathname === new URL(homeHref, location.href).pathname;
+
+      if (cameFromHome && history.length > 1) {
+        history.back();
+      } else {
+        location.href = homeHref;
+      }
     });
   });
 }
