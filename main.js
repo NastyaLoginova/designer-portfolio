@@ -33,7 +33,7 @@ const CONFIG = {
       description:
         'Спроектировала модель входа в сервисы: добавила сценарную логику, виджеты и приоритизацию, чтобы снизить случайные переходы и повысить конверсию в веб-сервисы.',
       media: 'assets/main/petrovich_services.mp4',
-      link: null,
+      link: './cases/petrovich_services/',
     },
     {
       id: 'petrovich_list',
