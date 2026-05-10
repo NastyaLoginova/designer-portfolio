@@ -87,7 +87,7 @@
 .case-content {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 0;
   padding: 24px;
   border-radius: var(--card-radius);
   background: var(--card-bg);
@@ -97,10 +97,6 @@
 .case-content__lead {
   display: flex;
   flex-direction: column;
-}
-
-.case-content__lead + .case-block {
-  margin-top: -28px;
 }
 
 .case-content__lead-title {
@@ -280,7 +276,7 @@
   }
 
   .case-content {
-    gap: 40px;
+    gap: 0;
   }
 
   .case-content__lead-title {
@@ -360,7 +356,7 @@
   }
 
   .case-content {
-    gap: 40px;
+    gap: 0;
     padding: 16px;
   }
 
