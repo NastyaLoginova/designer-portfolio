@@ -279,19 +279,38 @@ function createCaseLead(title, subtitle) {
   return lead;
 }
 
+const DEFAULT_BLOCK_SPACING_BEFORE = 40;
+const LEAD_FIRST_BLOCK_SPACING_OFFSET = 34;
+
 function createCaseContent(blocks = [], options = {}) {
   const container = createElement('div', { className: 'case-content' });
   const lead = createCaseLead(options.title, options.subtitle);
+  const defaultSpacing =
+    options.defaultBlockSpacing ?? DEFAULT_BLOCK_SPACING_BEFORE;
 
   if (lead) {
     container.appendChild(lead);
   }
 
+  let appendedBlockCount = 0;
   blocks.forEach((block) => {
     const blockElement = createCaseBlock(block);
-    if (blockElement) {
-      container.appendChild(blockElement);
+    if (!blockElement) return;
+
+    const spacing = block.spacingBefore ?? defaultSpacing;
+    let marginTop;
+    if (appendedBlockCount === 0) {
+      marginTop = 0;
+    } else {
+      marginTop = spacing;
     }
+
+    if (marginTop !== 0) {
+      blockElement.style.marginTop = `${marginTop}px`;
+    }
+
+    container.appendChild(blockElement);
+    appendedBlockCount += 1;
   });
 
   return container;

@@ -19,6 +19,7 @@ function initCase() {
   const content = createCaseContent(CASE_CONFIG.blocks, {
     title: CASE_CONFIG.title,
     subtitle: CASE_CONFIG.subtitle,
+    defaultBlockSpacing: CASE_CONFIG.defaultBlockSpacing,
   });
   mainContent.appendChild(content);
 
