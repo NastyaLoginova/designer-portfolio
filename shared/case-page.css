@@ -12,7 +12,6 @@
   display: flex;
   justify-content: center;
 
-  padding: 0 24px;
   pointer-events: none;
 }
 
@@ -22,7 +21,7 @@
   justify-content: space-between;
   align-items: flex-start;
 
-  width: 624px;
+  width: var(--content-container-width);
   max-width: 100%;
 
   padding: 0;
@@ -97,7 +96,7 @@
 /* Основной контент кейса */
 
 .case-main {
-  max-width: 624px;
+  max-width: var(--content-container-width);
   margin: calc(var(--header-top) + var(--header-height) + 10px) auto 0px;
   padding: 0 0px 40px;
 }
@@ -144,10 +143,6 @@
 
 .case-block {
   margin: 0;
-}
-
-.case-block--text {
-  padding: 0;
 }
 
 .case-block__content {
@@ -258,25 +253,11 @@
 /* Адаптивность */
 
 @media (max-width: 648px) {
-  .case-header {
-    padding: 0 8px;
-  }
-
-  .case-header__item--home {
-    width: 112px;
-  }
-
-  .case-header__item--stack {
-    width: 96px;
-  }
-
   .case-header__home-label {
     display: none;
   }
 
-  /* Small buttons: 64x40 for all header controls */
   .case-header__item,
-  .case-header__item--stack,
   .case-header__item--home {
     width: 64px;
     height: 40px;
@@ -293,27 +274,6 @@
   }
 
   .case-header__stack {
-    gap: 8px;
-  }
-
-  .case-intro {
-    padding: 16px;
-  }
-
-  .case-block--text {
-    padding: 0;
-  }
-
-  .case-main {
-    padding: 0;
-  }
-
-  .case-content {
-    gap: 0;
-    padding: 16px;
-  }
-
-  .case-content__lead {
     gap: 8px;
   }
 }
