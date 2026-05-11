@@ -8,22 +8,10 @@ const CONFIG = {
   links: window.PORTFOLIO_LINKS,
   profile: {
     name: 'Настя Логинова',
-    description:
-      'Продуктовый дизайнер. Проектирую и развиваю цифровые продукты в e-commerce и B2B-сервисах. Веду задачи от определения проблемы и гипотез до внедрения и оценки результата.',
-    experience: [
-      {
-        company: 'Heads and Hands',
-        period: 'август 2024 — сейчас',
-      },
-      {
-        company: 'K‑Digital',
-        period: 'январь 2023 — август 2024',
-      },
-       {
-        company: 'Я.Репетитор',
-        period: 'февраль 2023 — сентябрь 2023',
-      },
-    ],
+    descriptionStart:
+      'Продуктовый дизайнер с опытом более 3 лет. Создаю и развиваю e‑commerce и B2B‑сервисы в ',
+    descriptionEnd:
+      ', помогая превращать бизнес-задачи и пользовательские проблемы в работающие продуктовые решения.',
   },
   cases: [
     {
@@ -149,7 +137,7 @@ function createAboutSection(config) {
     className: 'about__photo',
     attrs: {
       src: 'assets/main/profile-photo.png',
-      alt: 'Портрет Насти Логиновой',
+      alt: 'photo',
     },
   });
   photoCard.appendChild(img);
@@ -217,36 +205,23 @@ function createAboutSection(config) {
   });
   const aboutText = createElement('p', {
     className: 'card__text',
-    text: `${config.description}`,
   });
+  aboutText.append(document.createTextNode(config.descriptionStart));
+  const companyLink = createElement('a', {
+    className: 'inline-text-link',
+    text: 'Heads and Hands',
+    attrs: {
+      href: 'https://handh.ru/',
+      target: '_blank',
+      rel: 'noopener noreferrer',
+    },
+  });
+  aboutText.appendChild(companyLink);
+  aboutText.append(document.createTextNode(config.descriptionEnd));
   aboutCard.appendChild(aboutTitle);
   aboutCard.appendChild(aboutText);
 
-  const expCard = createElement('article', {
-    className: 'about__card',
-  });
-
-  const metaList = createElement('div', { className: 'about__meta' });
-
-  config.experience.forEach((item) => {
-    const row = createElement('div', { className: 'about__meta-row' });
-    const company = createElement('span', {
-      className: 'about__meta-company',
-      text: `${item.company}`,
-    });
-    const period = createElement('span', {
-      className: 'about__meta-years',
-      text: item.period,
-    });
-    row.appendChild(company);
-    row.appendChild(period);
-    metaList.appendChild(row);
-  });
-
-  expCard.appendChild(metaList);
-
   cardsWrapper.appendChild(aboutCard);
-  cardsWrapper.appendChild(expCard);
 
   content.appendChild(cardsWrapper);
 
@@ -382,9 +357,9 @@ function createFooterSection() {
   const buttonsWrapper = createElement('div', { className: 'footer-section__buttons' });
 
   const buttonsConfig = [
-    { label: 'CV', href: CONFIG.links.cv },
-    { label: 'TELEGRAM', href: CONFIG.links.tg },
-    { label: 'LINKEDIN', href: CONFIG.links.linkedin }
+    { label: 'CV', href: CONFIG.links.cv, icon: 'assets/main/document.svg' },
+    { label: 'TELEGRAM', href: CONFIG.links.tg, icon: 'assets/main/link.svg' },
+    { label: 'LINKEDIN', href: CONFIG.links.linkedin, icon: 'assets/main/link.svg' }
   ];
 
   buttonsConfig.forEach(btn => {
@@ -395,8 +370,23 @@ function createFooterSection() {
         target: '_blank',
         rel: 'noopener noreferrer',
       },
-      text: btn.label
     });
+
+    const buttonLabel = createElement('span', {
+      className: 'footer-section__button-label',
+      text: btn.label,
+    });
+    const buttonIcon = createElement('img', {
+      className: 'footer-section__button-icon',
+      attrs: {
+        src: btn.icon,
+        alt: '',
+        'aria-hidden': 'true',
+      },
+    });
+
+    button.appendChild(buttonLabel);
+    button.appendChild(buttonIcon);
     buttonsWrapper.appendChild(button);
   });
 
