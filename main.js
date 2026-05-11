@@ -586,6 +586,7 @@ function initializeCat() {
   const el = document.getElementById('cat');
   if (!el) return;
   const FRAME_PX = 450;
+  const canUseHoverCursor = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   const img = new Image();
   img.src = 'assets/main/cat.png';
@@ -597,31 +598,36 @@ function initializeCat() {
     el.style.height = `${DISPLAY_PX}px`;
     el.style.backgroundSize = `${bgW}px ${bgH}px`;
 
-    const catCursor = createElement('div', { className: 'cat-cursor' });
-    const ccText = createElement('span', {
-      className: 'cat-cursor-text',
-      text: 'Погладить',
-    });
-    const ccIcon = createElement('img', {
-      className: 'cat-cursor-icon',
-      attrs: { src: 'assets/main/pet.svg', alt: 'pet' },
-    });
-    catCursor.appendChild(ccText);
-    catCursor.appendChild(ccIcon);
-    document.body.appendChild(catCursor);
+    let catCursor = null;
+    if (canUseHoverCursor) {
+      catCursor = createElement('div', { className: 'cat-cursor' });
+      const ccText = createElement('span', {
+        className: 'cat-cursor-text',
+        text: 'Погладить',
+      });
+      const ccIcon = createElement('img', {
+        className: 'cat-cursor-icon',
+        attrs: { src: 'assets/main/pet.svg', alt: 'pet' },
+      });
+      catCursor.appendChild(ccText);
+      catCursor.appendChild(ccIcon);
+      document.body.appendChild(catCursor);
+    }
 
     playShort('sit', 0);
 
-    el.addEventListener('mouseenter', () => {
-      catCursor.style.display = 'flex';
-    });
-    el.addEventListener('mousemove', (e) => {
-      catCursor.style.left = `${e.clientX}px`;
-      catCursor.style.top = `${e.clientY}px`;
-    });
-    el.addEventListener('mouseleave', () => {
-      catCursor.style.display = 'none';
-    });
+    if (catCursor) {
+      el.addEventListener('mouseenter', () => {
+        catCursor.style.display = 'flex';
+      });
+      el.addEventListener('mousemove', (e) => {
+        catCursor.style.left = `${e.clientX}px`;
+        catCursor.style.top = `${e.clientY}px`;
+      });
+      el.addEventListener('mouseleave', () => {
+        catCursor.style.display = 'none';
+      });
+    }
   };
 
   el.addEventListener('click', () => {

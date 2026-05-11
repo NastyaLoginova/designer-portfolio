@@ -537,8 +537,10 @@ a {
   pointer-events: auto;
 }
 
-.cat:hover {
-  cursor: none;
+@media (hover: hover) and (pointer: fine) {
+  .cat:hover {
+    cursor: none;
+  }
 }
 
 .cat__caption {
@@ -561,10 +563,12 @@ a {
   display: inline-block;
 }
 
-.cat:hover + .cat__caption {
-  background: var(--bg-element-color);
-  backdrop-filter: blur(26px) saturate(150%);
-  border-radius: 100px;
+@media (hover: hover) and (pointer: fine) {
+  .cat:hover + .cat__caption {
+    background: var(--bg-element-color);
+    backdrop-filter: blur(26px) saturate(150%);
+    border-radius: 100px;
+  }
 }
 
 .cat-cursor {
