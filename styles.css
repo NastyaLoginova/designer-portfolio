@@ -335,6 +335,10 @@ a {
   align-items: center;
 }
 
+.case--link {
+  cursor: pointer;
+}
+
 .case__media {
   object-fit: contain;
 }
@@ -409,6 +413,10 @@ a {
 
 .case__button:hover {
   background: #EAEAEA;
+}
+
+.case--link:focus-visible {
+  outline: none;
 }
 
 @media (max-width: 648px) {

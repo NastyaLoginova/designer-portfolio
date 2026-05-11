@@ -241,8 +241,15 @@ function createCasesSection(cases) {
   const list = createElement('div', { className: 'cases' });
 
   cases.forEach((item) => {
-    const caseBlock = createElement('article', {
-      className: 'case',
+    const isCaseLink = item.link != null;
+    const caseBlock = createElement(isCaseLink ? 'a' : 'article', {
+      className: `case${isCaseLink ? ' case--link' : ''}`,
+      attrs: isCaseLink
+        ? {
+            href: item.link,
+            'aria-label': `Читать кейс: ${item.title}${item.subtitle ? ` — ${item.subtitle}` : ''}`,
+          }
+        : undefined,
     });
 
     const mediaPath = (item.media || '').toLowerCase();
@@ -289,16 +296,13 @@ function createCasesSection(cases) {
       className: 'case__lead-subtitle',
       text: item.subtitle,
     });
-    const button = createElement('a', {
+    const button = createElement('span', {
       className: 'case__button',
       text: 'ЧИТАТЬ КЕЙС',
-      attrs: {
-        href: item.link,
-      },
     });
 
-    if (item.link != null) {
-      button.addEventListener('click', () => {
+    if (isCaseLink) {
+      caseBlock.addEventListener('click', () => {
         ym(CONFIG.yandexMetrikaId, 'reachGoal', 'read_case_click', { case_id: item.id });
       });
     }
@@ -309,7 +313,7 @@ function createCasesSection(cases) {
     }
 
     headerRow.appendChild(lead);
-    if (item.link != null) {
+    if (isCaseLink) {
       headerRow.appendChild(button);
     }
 
