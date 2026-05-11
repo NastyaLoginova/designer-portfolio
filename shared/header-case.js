@@ -33,13 +33,6 @@ function createElement(tag, options = {}) {
   return el;
 }
 
-/**
- * Создает навигационную панель для кейса
- * @param {Object} config - Конфигурация
- * @param {string} config.caseId - ID кейса
- * @param {string} config.caseName - Название кейса
- * @returns {HTMLElement}
- */
 function createCaseHeader() {
   const linksConfig = window.PORTFOLIO_LINKS;
   const homeHref = getHomeHref();
@@ -52,22 +45,33 @@ function createCaseHeader() {
     className: 'case-header__inner',
   });
 
-  // Левая часть - на главную
   const leftItem = createElement('div', {
     className: 'case-header__item case-header__item--home',
   });
-  const homeLink = createElement('a', {
-    className: 'case-header__link case-header__home-link',
+  const homeIcon = createElement('img', {
+    className: 'case-header__home-icon',
+    attrs: {
+      src: '../../assets/cases/back.svg',
+      alt: '',
+      'aria-hidden': 'true',
+    },
+  });
+  const homeLabel = createElement('span', {
+    className: 'case-header__home-label',
     text: 'НА ГЛАВНУЮ',
+  });
+  const homeLink = createElement('a', {
+    className: 'case-header__home-link',
+    children: [homeIcon, homeLabel],
     attrs: { href: homeHref },
   });
   leftItem.appendChild(homeLink);
 
   const rightStack = createElement('div', { className: 'case-header__stack' });
   const links = [
-    { label: 'CV', href: linksConfig.cv },
-    { label: 'TELEGRAM', href: linksConfig.tg },
-    { label: 'LINKEDIN', href: linksConfig.linkedin },
+    { label: 'CV', shortLabel: 'CV', href: linksConfig.cv },
+    { label: 'TELEGRAM', shortLabel: 'TG', href: linksConfig.tg },
+    { label: 'LINKEDIN', shortLabel: 'IN', href: linksConfig.linkedin },
   ];
 
   links.forEach((item) => {
@@ -76,7 +80,7 @@ function createCaseHeader() {
     });
     const link = createElement('a', {
       className: 'case-header__link',
-      text: item.label,
+      text: window.innerWidth <= 648 ? item.shortLabel : item.label,
       attrs: {
         href: item.href,
         target: '_blank',
