@@ -2,7 +2,8 @@
  * Конфигурация для кейса Oskelly
  */
 
-const OSKELLY_ASSETS_PATH = '../../assets/cases/oskelly/';
+const caseAsset = (file) =>
+  window.PORTFOLIO_LOCALE.asset(`assets/cases/oskelly/${file}`);
 
 const CASE_CONFIG = {
   id: 'oskelly',
@@ -17,7 +18,7 @@ const CASE_CONFIG = {
     },
     {
       type: 'video',
-      src: `${OSKELLY_ASSETS_PATH}oskelly.mp4`,
+      src: caseAsset('oskelly.mp4'),
     },
     {
       type: 'text',
@@ -32,7 +33,7 @@ const CASE_CONFIG = {
     },
     {
       type: 'image',
-      src: `${OSKELLY_ASSETS_PATH}frame_1.png`,
+      src: caseAsset('frame_1.png'),
     },
     {
       type: 'text',
@@ -41,7 +42,7 @@ const CASE_CONFIG = {
     },
     {
       type: 'image',
-      src: `${OSKELLY_ASSETS_PATH}frame_2.png`,
+      src: caseAsset('frame_2.png'),
     },
     {
       type: 'text',
@@ -51,7 +52,7 @@ const CASE_CONFIG = {
     },
     {
       type: 'image',
-      src: `${OSKELLY_ASSETS_PATH}frame_3.png`,
+      src: caseAsset('frame_3.png'),
     },
     {
       type: 'text',
@@ -60,7 +61,7 @@ const CASE_CONFIG = {
     },
     {
       type: 'image',
-      src: `${OSKELLY_ASSETS_PATH}frame_4.png`,
+      src: caseAsset('frame_4.png'),
     },
     {
       type: 'text',
@@ -70,7 +71,7 @@ const CASE_CONFIG = {
     },
     {
       type: 'image',
-      src: `${OSKELLY_ASSETS_PATH}frame_5.png`,
+      src: caseAsset('frame_5.png'),
     },
     {
       type: 'text',

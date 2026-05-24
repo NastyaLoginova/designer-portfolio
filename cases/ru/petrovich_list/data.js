@@ -2,7 +2,8 @@
  * Конфигурация для кейса Петрович листинг
  */
 
-const PETROVICH_LIST_ASSETS_PATH = '../../assets/cases/petrovich_list/';
+const caseAsset = (file) =>
+  window.PORTFOLIO_LOCALE.asset(`assets/cases/petrovich_list/${file}`);
 
 const CASE_CONFIG = {
   id: 'petrovich_list',
@@ -17,7 +18,7 @@ const CASE_CONFIG = {
     },
     {
       type: 'image',
-      src: `${PETROVICH_LIST_ASSETS_PATH}frame_1.png`,
+      src: caseAsset('frame_1.png'),
     },
     {
       type: 'text',
@@ -46,7 +47,7 @@ const CASE_CONFIG = {
     },
     {
       type: 'image',
-      src: `${PETROVICH_LIST_ASSETS_PATH}frame_2.png`,
+      src: caseAsset('frame_2.png'),
     },
     {
       type: 'text',
@@ -56,7 +57,7 @@ const CASE_CONFIG = {
     },
     {
       type: 'image',
-      src: `${PETROVICH_LIST_ASSETS_PATH}frame_3.png`,
+      src: caseAsset('frame_3.png'),
     },
     {
       type: 'text',
@@ -66,7 +67,7 @@ const CASE_CONFIG = {
     },
     {
       type: 'image',
-      src: `${PETROVICH_LIST_ASSETS_PATH}frame_4.png`,
+      src: caseAsset('frame_4.png'),
     },
     {
       type: 'text',
@@ -76,7 +77,7 @@ const CASE_CONFIG = {
     },
     {
       type: 'image',
-      src: `${PETROVICH_LIST_ASSETS_PATH}frame_5.png`,
+      src: caseAsset('frame_5.png'),
     },
     {
       type: 'text',

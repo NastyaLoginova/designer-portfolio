@@ -6,6 +6,10 @@ function initCase() {
   const app = document.getElementById('case-app');
   if (!app) return;
 
+  if (CASE_CONFIG.title) {
+    document.title = CASE_CONFIG.title;
+  }
+
   const header = createCaseHeader({
     caseId: CASE_CONFIG.id,
     caseName: CASE_CONFIG.title,

@@ -1,66 +1,22 @@
 const CONFIG = {
   yandexMetrikaId: 108181957,
-  nav: [
-    { id: 'about', label: 'ОБО МНЕ', href: '#about' },
-    { id: 'cases', label: 'КЕЙСЫ', href: '#cases' },
-    { id: 'contacts', label: 'КОНТАКТЫ', href: '#contacts' },
-  ],
   links: window.PORTFOLIO_LINKS,
-  profile: {
-    name: 'Настя Логинова',
-    descriptionStart:
-      'Продуктовый дизайнер с опытом более 3 лет. Создаю и развиваю e‑commerce и B2B‑сервисы в ',
-    descriptionEnd:
-      ', помогаю превращать бизнес-задачи и пользовательские проблемы в работающие продуктовые решения.',
+  get content() {
+    return window.PORTFOLIO_CONTENT;
   },
-  cases: [
-    {
-      id: 'petrovich_services',
-      title: 'Петрович',
-      subtitle: 'Концепция сервисов',
-      description:
-        'Спроектировала раздел «Сервисы»: добавила сценарную логику, виджеты и приоритизацию, чтобы снизить случайные переходы и повысить конверсию в веб‑сервисы.',
-      media: 'assets/main/petrovich_services.mp4',
-      link: './cases/petrovich_services/',
-    },
-    {
-      id: 'petrovich_list',
-      title: 'Петрович',
-      subtitle: 'Новый формат листинга',
-      description:
-        'Изменила формат отображения товаров с учётом роста инфографики: усилила роль изображений и упростила структуру карточек, что положительно повлияло на конверсию.',
-      media: 'assets/main/petrovich_list.mp4',
-      link: './cases/petrovich_list/',
-    },
-    {
-      id: 'oskelly',
-      title: 'Oskelly',
-      subtitle: 'Shop‑in‑shop: витрины с курируемым ассортиментом',
-      description:
-        'Спроектировала модель shop‑in‑shop — отдельных витрин категорий с курируемым ассортиментом от бутиков. Решение позволило встроить новый сценарий «мини‑магазинов» и подготовить продукт к масштабированию.',
-      media: 'assets/main/oskelly.mp4',
-      link: './cases/oskelly/',
-    },
-    {
-      id: 'growFood',
-      title: 'Grow Food',
-      subtitle: 'Редизайн профиля и программы лояльности',
-      description:
-        'В рамках редизайна приложения спроектировала профиль, отзывы и программу лояльности. Работала в заданной архитектуре, интегрировала новые механики в существующий продукт.',
-      media: 'assets/main/growfood.mp4',
-      link: null,
-    },
-    {
-      id: 'securOS',
-      title: 'SecurOS',
-      subtitle: 'Развитие операторского интерфейса',
-      description:
-        'Дополняла продукт новыми фичами и улучшала сценарии обработки событий на основе фидбека операторов ситуационных центров.',
-      media: 'assets/main/securos.png',
-      link: null,
-    },
-  ],
 };
+
+function resolveMediaPath(path) {
+  return window.PORTFOLIO_LOCALE.asset(path);
+}
+
+function resolveCasesForRender() {
+  return CONFIG.content.cases.map((item) => ({
+    ...item,
+    media: resolveMediaPath(item.media),
+    link: item.hasCasePage ? window.PORTFOLIO_LOCALE.caseHref(item.id) : null,
+  }));
+}
 
 function createElement(tag, options = {}) {
   const el = document.createElement(tag);
@@ -102,7 +58,7 @@ function createHeader(navItems) {
     className: 'site-header__inner',
   });
 
-  navItems.forEach((item, index) => {
+  navItems.forEach((item) => {
     const itemWrapper = createElement('div', {
       className: 'site-header__item',
     });
@@ -136,7 +92,7 @@ function createAboutSection(config) {
   const img = createElement('img', {
     className: 'about__photo',
     attrs: {
-      src: 'assets/main/profile-photo.png',
+      src: resolveMediaPath('assets/main/profile-photo.png'),
       alt: 'photo',
     },
   });
@@ -158,7 +114,7 @@ function createAboutSection(config) {
   const cvIcon = createElement('img', {
     className: 'about__action-icon',
     attrs: {
-      src: 'assets/main/cv_icon.svg',
+      src: resolveMediaPath('assets/main/cv_icon.svg'),
       alt: 'CV',
     },
   });
@@ -181,7 +137,7 @@ function createAboutSection(config) {
   const tgIcon = createElement('img', {
     className: 'about__action-icon',
     attrs: {
-      src: 'assets/main/tg_icon.svg',
+      src: resolveMediaPath('assets/main/tg_icon.svg'),
       alt: 'TG',
     },
   });
@@ -201,7 +157,7 @@ function createAboutSection(config) {
   });
   const aboutTitle = createElement('h2', {
     className: 'card__title',
-    text: 'Настя Логинова',
+    text: config.name,
   });
   const aboutText = createElement('p', {
     className: 'card__text',
@@ -209,7 +165,7 @@ function createAboutSection(config) {
   aboutText.append(document.createTextNode(config.descriptionStart));
   const companyLink = createElement('a', {
     className: 'inline-text-link',
-    text: 'Heads and Hands',
+    text: config.companyName,
     attrs: {
       href: 'https://handh.ru/',
       target: '_blank',
@@ -247,7 +203,10 @@ function createCasesSection(cases) {
       attrs: isCaseLink
         ? {
             href: item.link,
-            'aria-label': `Читать кейс: ${item.title}${item.subtitle ? ` — ${item.subtitle}` : ''}`,
+            'aria-label': window.PORTFOLIO_LOCALE.strings.readCaseAria(
+              item.title,
+              item.subtitle,
+            ),
           }
         : undefined,
     });
@@ -298,7 +257,7 @@ function createCasesSection(cases) {
     });
     const button = createElement('span', {
       className: 'case__button',
-      text: 'ЧИТАТЬ КЕЙС',
+      text: CONFIG.content.ui.readCase,
     });
 
     if (isCaseLink) {
@@ -346,13 +305,14 @@ function createFooterSection() {
 
   const content = createElement('div', { className: 'footer-section__content' });
 
+  const footer = CONFIG.content.footer;
   const text1 = createElement('h2', {
     className: 'footer-section__title',
-    text: 'Спасибо, что посмотрели',
+    text: footer.title,
   });
   const text2 = createElement('p', {
     className: 'footer-section__subtitle',
-    text: 'Буду рада обсудить с Вами проект',
+    text: footer.subtitle,
   });
 
   content.appendChild(text1);
@@ -360,10 +320,15 @@ function createFooterSection() {
 
   const buttonsWrapper = createElement('div', { className: 'footer-section__buttons' });
 
+  const linkedinHref =
+    window.PORTFOLIO_LOCALE.isEn
+      ? CONFIG.links.linkedin.replace('locale=ru-RU', 'locale=en_US')
+      : CONFIG.links.linkedin;
+
   const buttonsConfig = [
-    { label: 'CV', href: CONFIG.links.cv, icon: 'assets/main/document.svg' },
-    { label: 'TELEGRAM', href: CONFIG.links.tg, icon: 'assets/main/link.svg' },
-    { label: 'LINKEDIN', href: CONFIG.links.linkedin, icon: 'assets/main/link.svg' }
+    { label: 'CV', href: CONFIG.links.cv, icon: resolveMediaPath('assets/main/document.svg') },
+    { label: 'TELEGRAM', href: CONFIG.links.tg, icon: resolveMediaPath('assets/main/link.svg') },
+    { label: 'LINKEDIN', href: linkedinHref, icon: resolveMediaPath('assets/main/link.svg') },
   ];
 
   buttonsConfig.forEach(btn => {
@@ -402,11 +367,11 @@ function createFooterSection() {
   const caption = createElement('div', { className: 'cat__caption' });
   const captionText = createElement('span', {
     className: 'cat__caption-text',
-    text: 'Кот отвечает за настроение',
+    text: footer.catCaption,
   });
   const captionIcon = createElement('img', {
     className: 'cat__caption-icon',
-    attrs: { src: 'assets/main/heart.svg', alt: 'heart' },
+    attrs: { src: resolveMediaPath('assets/main/heart.svg'), alt: 'heart' },
   });
   // caption.appendChild(captionText);
   // caption.appendChild(captionIcon);
@@ -427,9 +392,11 @@ function init() {
   const dotGrid = createElement('div', { className: 'dot-grid' });
   document.body.appendChild(dotGrid);
 
-  const header = createHeader(CONFIG.nav);
-  const aboutSection = createAboutSection(CONFIG.profile);
-  const casesSection = createCasesSection(CONFIG.cases);
+  document.title = CONFIG.content.meta.title;
+
+  const header = createHeader(CONFIG.content.nav);
+  const aboutSection = createAboutSection(CONFIG.content.profile);
+  const casesSection = createCasesSection(resolveCasesForRender());
   const footerSection = createFooterSection();
 
   document.body.insertBefore(header, app);
@@ -593,7 +560,7 @@ function initializeCat() {
   const canUseHoverCursor = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   const img = new Image();
-  img.src = 'assets/main/cat.png';
+  img.src = resolveMediaPath('assets/main/cat.png');
   img.onload = () => {
     const scale = DISPLAY_PX / FRAME_PX;
     const bgW = img.naturalWidth * scale;
@@ -607,11 +574,14 @@ function initializeCat() {
       catCursor = createElement('div', { className: 'cat-cursor' });
       const ccText = createElement('span', {
         className: 'cat-cursor-text',
-        text: 'Погладить',
+        text: CONFIG.content.footer.petCat,
       });
       const ccIcon = createElement('img', {
         className: 'cat-cursor-icon',
-        attrs: { src: 'assets/main/pet.svg', alt: 'pet' },
+        attrs: {
+          src: resolveMediaPath('assets/main/pet.svg'),
+          alt: 'pet',
+        },
       });
       catCursor.appendChild(ccText);
       catCursor.appendChild(ccIcon);

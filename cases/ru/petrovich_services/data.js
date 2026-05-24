@@ -2,7 +2,8 @@
  * Конфигурация для кейса Петрович сервисы
  */
 
-const PETROVICH_SERVICES_ASSETS_PATH = '../../assets/cases/petrovich_services/';
+const caseAsset = (file) =>
+  window.PORTFOLIO_LOCALE.asset(`assets/cases/petrovich_services/${file}`);
 
 const CASE_CONFIG = {
   id: 'petrovich_services',
@@ -17,7 +18,7 @@ const CASE_CONFIG = {
     },
     {
       type: 'image',
-      src: `${PETROVICH_SERVICES_ASSETS_PATH}frame_1.png`,
+      src: caseAsset('frame_1.png'),
     },
     {
       type: 'text',
@@ -33,7 +34,7 @@ const CASE_CONFIG = {
     },
     {
       type: 'image',
-      src: `${PETROVICH_SERVICES_ASSETS_PATH}frame_2.png`,
+      src: caseAsset('frame_2.png'),
     },
     {
       type: 'text',
@@ -62,7 +63,7 @@ const CASE_CONFIG = {
     },
     {
       type: 'image',
-      src: `${PETROVICH_SERVICES_ASSETS_PATH}frame_3.png`,
+      src: caseAsset('frame_3.png'),
     },
     {
       type: 'text',
@@ -80,7 +81,7 @@ const CASE_CONFIG = {
     },
     {
       type: 'image',
-      src: `${PETROVICH_SERVICES_ASSETS_PATH}frame_4.png`,
+      src: caseAsset('frame_4.png'),
     },
     {
       type: 'text',
@@ -90,7 +91,7 @@ const CASE_CONFIG = {
     },
     {
       type: 'image',
-      src: `${PETROVICH_SERVICES_ASSETS_PATH}frame_5.png`,
+      src: caseAsset('frame_5.png'),
     },
     {
       type: 'text',
@@ -101,7 +102,7 @@ const CASE_CONFIG = {
     },
    {
       type: 'image',
-      src: `${PETROVICH_SERVICES_ASSETS_PATH}frame_6.png`,
+      src: caseAsset('frame_6.png'),
     },
     {
       type: 'text',

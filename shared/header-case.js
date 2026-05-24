@@ -35,7 +35,11 @@ function createElement(tag, options = {}) {
 
 function createCaseHeader() {
   const linksConfig = window.PORTFOLIO_LINKS;
-  const homeHref = getHomeHref();
+  const locale = window.PORTFOLIO_LOCALE;
+  const homeHref = locale.homeHref();
+  const linkedinHref = locale.isEn
+    ? linksConfig.linkedin.replace('locale=ru-RU', 'locale=en_US')
+    : linksConfig.linkedin;
 
   const header = createElement('header', {
     className: 'case-header',
@@ -51,14 +55,14 @@ function createCaseHeader() {
   const homeIcon = createElement('img', {
     className: 'case-header__home-icon',
     attrs: {
-      src: '../../assets/cases/back.svg',
+      src: locale.asset('assets/cases/back.svg'),
       alt: '',
       'aria-hidden': 'true',
     },
   });
   const homeLabel = createElement('span', {
     className: 'case-header__home-label',
-    text: 'НА ГЛАВНУЮ',
+    text: locale.strings.homeLabel,
   });
   const homeLink = createElement('a', {
     className: 'case-header__home-link',
@@ -71,7 +75,7 @@ function createCaseHeader() {
   const links = [
     { label: 'CV', shortLabel: 'CV', href: linksConfig.cv },
     { label: 'TELEGRAM', shortLabel: 'TG', href: linksConfig.tg },
-    { label: 'LINKEDIN', shortLabel: 'IN', href: linksConfig.linkedin },
+    { label: 'LINKEDIN', shortLabel: 'IN', href: linkedinHref },
   ];
 
   links.forEach((item) => {
@@ -98,11 +102,8 @@ function createCaseHeader() {
   return header;
 }
 
-/**
- * Инициализирует навигацию для кейса
- */
 function initCaseNavigation() {
-  const homeHref = getHomeHref();
+  const homeHref = window.PORTFOLIO_LOCALE.homeHref();
 
   document.querySelectorAll('.case-header__home-link').forEach((link) => {
     link.addEventListener('click', (e) => {
@@ -119,24 +120,4 @@ function initCaseNavigation() {
       }
     });
   });
-}
-
-function getHomeHref() {
-  const { protocol, pathname } = window.location;
-
-  if (protocol === 'file:') {
-    const fileParts = pathname.split('/cases/');
-    if (fileParts.length > 1) {
-      return `${fileParts[0]}/index.html`;
-    }
-    return '../../index.html';
-  }
-
-  const pathParts = pathname.split('/cases/');
-  if (pathParts.length > 1) {
-    const basePath = pathParts[0] || '';
-    return `${basePath}/index.html`;
-  }
-
-  return '/';
 }
