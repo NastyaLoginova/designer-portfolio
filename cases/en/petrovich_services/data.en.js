@@ -14,7 +14,7 @@ const CASE_CONFIG = {
       type: 'text',
       title: null,
       header: null,
-      text: 'Designed the “Services” section with scenario-based logic, widgets, and prioritization to reduce random navigation and improve conversion to web services.',
+      text: 'Designed the “Services” section with scenario-based logic, widgets, and prioritization to reduce accidental navigation and improve conversion to web services.',
     },
     {
       type: 'image',
@@ -30,7 +30,7 @@ const CASE_CONFIG = {
       type: 'text',
       title: 'Problem',
       markdown: true,
-      text: 'The section was a flat list without structure or prioritization. As a result:\n- users did not understand what was inside each service\n- every item looked equally important\n- WebView transitions broke the experience',
+      text: 'The section was a flat list without structure or prioritization. As a result:\n- users did not understand what was inside each service\n- every item looked equally important\n- transitions to WebView disrupted the experience',
     },
     {
       type: 'image',
@@ -40,25 +40,25 @@ const CASE_CONFIG = {
       type: 'text',
       title: 'Research',
       markdown: true,
-      text: 'I ran a qualitative study with card sorting followed by interviews.\n\nFindings:\n- users think in tasks, not services\n- names do not explain outcomes\n- context and the next step matter',
+      text: 'I conducted a qualitative study combining card sorting and follow-up interviews.\n\nFindings:\n- users think in tasks, not services\n- service names did not clearly communicate outcomes\n- context and the next step matter',
     },
     {
       type: 'text',
       title: 'Hypothesis',
       header: null,
-      text: 'We assumed a scenario model with contextual widgets could make services clearer and increase engagement through a clearer entry and a shorter path to action.',
+      text: 'We believed a scenario-based model with contextual widgets could improve service discoverability and increase engagement by shortening the path to action.',
     },
     {
       type: 'text',
       title: 'Concepts',
       header: null,
-      text: 'I explored several approaches to organizing the section.',
+      text: 'I explored several concepts for restructuring the section.',
     },
     {
       type: 'text',
       title: null,
       header: 'Concept 1 — customizable list',
-      text: 'The first concept let users build a personal favorites set.',
+      text: 'The first concept allowed users to build a personalized set of favorite services.',
       spacingBefore: 20,
     },
     {
@@ -69,7 +69,7 @@ const CASE_CONFIG = {
       type: 'text',
       title: null,
       header: null,
-      text: 'I dropped this direction because it did not solve comprehension and customization required too much effort.',
+      text: 'I dropped this direction because it did not solve the core comprehension problem, while customization required too much effort from users.',
       spacingBefore: 20,
     },
     {
@@ -87,7 +87,7 @@ const CASE_CONFIG = {
       type: 'text',
       title: null,
       header: 'Concept 3 — scenarios with contextual widgets',
-      text: 'The core idea — widgets that reflect the user’s current state and suggest the next step. Unlike a static list, the same scenario can look different depending on context.',
+      text: 'The core idea — widgets that reflect the user’s current state and suggest the next step. Unlike a static list, the same scenario adapts to different user contexts.',
     },
     {
       type: 'image',
@@ -97,7 +97,7 @@ const CASE_CONFIG = {
       type: 'text',
       title: null,
       header: null,
-      text: 'I also explored promo blocks with video to strengthen the scenario model as an additional layer.',
+      text: 'I also explored promotional video blocks as an additional layer to reinforce the scenario-based model.',
       spacingBefore: 20,
     },
     {
@@ -109,7 +109,7 @@ const CASE_CONFIG = {
       title: 'Outcome',
       header: null,
       markdown: true,
-      text: 'The scenario model with contextual widgets became the main concept direction.\n\nCompared to earlier approaches, it:\n- made services clearer through scenarios and context\n- shortened the path to action\n- created a base for personalization and service growth\n\nThe concept was presented to the team and stakeholders and supported as a potential direction for the services section.',
+      text: 'The scenario model with contextual widgets became the main concept direction.\n\nCompared to earlier approaches, it:\n- made services clearer through scenarios and context\n- shortened the path to action\n- created a foundation for personalization and service growth\n\nThe concept was presented to the team and stakeholders and validated as a potential direction for the services section.',
     },
     {
       type: 'text',

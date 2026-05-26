@@ -14,7 +14,7 @@ const CASE_CONFIG = {
       type: 'text',
       title: null,
       header: null,
-      text: 'Reworked product listing as infographics grew on images: emphasized visuals and simplified card structure, which improved conversion.',
+      text: 'Redesigned the product listing as infographic-heavy product images became more common: emphasized visuals and simplified card structure, which improved conversion.',
     },
     {
       type: 'image',
@@ -24,26 +24,26 @@ const CASE_CONFIG = {
       type: 'text',
       title: 'Context',
       header: null,
-      text: 'Listing is the key screen where users decide to buy. It was originally a list layout designed for sequential, detail-heavy browsing.',
+      text: 'The listing is the key screen where users make purchase decisions. It was originally a list layout designed for sequential, detail-heavy browsing.',
     },
     {
       type: 'text',
       title: 'What changed',
       header: '1. Content',
-      text: 'Sellers started using images with infographics (specs, benefits, sizes). The image became the primary information carrier.',
+      text: 'Sellers increasingly used infographic-rich product images (specs, benefits, sizes). Images became the primary source of product information.',
     },
     {
       type: 'text',
       title: null,
       header: '2. User patterns',
-      text: 'We saw users often opening the product page for basic information. E‑commerce patterns also train people to choose through visual scanning.',
+      text: 'We noticed users frequently opening product pages just to access basic information. Modern e-commerce patterns also encourage visual scanning behavior.',
       spacingBefore: 20,
     },
     {
       type: 'text',
       title: 'Problem',
       header: null,
-      text: 'The list format was not adapted to the new content type or behavior.',
+      text: 'The existing list layout no longer matched the new content format or user behavior.',
     },
     {
       type: 'image',
@@ -53,7 +53,7 @@ const CASE_CONFIG = {
       type: 'text',
       title: 'Hypothesis',
       header: null,
-      text: 'We believed switching to a tile layout with larger images would improve choice efficiency — higher conversion and fewer product-page visits, because users could get key information without extra steps.',
+      text: 'We believed that switching to a tile layout with larger images would improve decision-making efficiency: increase conversion and reduce product-page visits by exposing key information earlier in the flow.',
     },
     {
       type: 'image',
@@ -61,9 +61,9 @@ const CASE_CONFIG = {
     },
     {
       type: 'text',
-      title: 'Measuring results',
+      title: 'Validation',
       header: null,
-      text: 'We ran an A/B test and analyzed metrics together.',
+      text: 'We launched an A/B test and analyzed the impact on key metrics.',
     },
     {
       type: 'image',
@@ -73,7 +73,7 @@ const CASE_CONFIG = {
       type: 'text',
       title: 'A/B test results',
       markdown: true,
-      text: '- +2% purchase conversion\n- browse depth increased\n- product-page visits decreased\n- users did not switch back to list view\n- decision speed unchanged\n- returns unchanged',
+      text: '- +2% purchase conversion\n- browse depth increased\n- product page visits decreased\n- users did not switch back to list view\n- decision-making speed unchanged\n- returns unchanged',
     },
     {
       type: 'image',
@@ -89,7 +89,7 @@ const CASE_CONFIG = {
       type: 'text',
       title: 'My role',
       markdown: true,
-      text: '- identified the problem and shaped the hypothesis\n- designed the solution and user flows\n- delivered iOS and Android designs and reviewed implementation\n- participated in launching the A/B test and analyzing metrics',
+      text: '- identified the problem and shaped the hypothesis\n- designed the solution and user flows\n- delivered iOS and Android designs and supervised implementation\n- participated in launching the A/B test and analyzing metrics',
     },
   ],
 };

@@ -10,18 +10,18 @@ window.PORTFOLIO_CONTENT = {
   profile: {
     name: 'Anastasia Loginova',
     descriptionStart:
-      'Product designer with 3+ years of experience. I build and evolve e‑commerce and B2B products at ',
+      'Product designer with 3+ years of experience. I design and evolve e‑commerce and B2B products at ',
     descriptionEnd:
-      ', turning business goals and user problems into solutions that work in production.',
+      ', helping transform business goals and user problems into effective product solutions.',
     companyName: 'Heads and Hands',
   },
   cases: [
     {
       id: 'petrovich_services',
       title: 'Petrovich',
-      subtitle: 'Services concept',
+      subtitle: 'Services Ecosystem Concept',
       description:
-        'Designed the “Services” section with scenario-based logic, widgets, and prioritization to reduce random navigation and improve conversion to web services.',
+        'Designed the “Services” section: introduced scenario-based logic, widgets, and prioritization to reduce accidental transitions and improve conversion into web services.',
       media: 'assets/main/petrovich_services.mp4',
       hasCasePage: true,
     },
@@ -30,7 +30,7 @@ window.PORTFOLIO_CONTENT = {
       title: 'Petrovich',
       subtitle: 'New listing format',
       description:
-        'Reworked product listing as infographics grew on images: emphasized visuals and simplified card structure, which improved conversion.',
+        'Redesigned the product listing format in response to the growing use of infographic content: strengthened the role of product imagery and simplified card structure, positively impacting conversion.',
       media: 'assets/main/petrovich_list.mp4',
       hasCasePage: true,
     },
@@ -39,23 +39,23 @@ window.PORTFOLIO_CONTENT = {
       title: 'Oskelly',
       subtitle: 'Shop‑in‑shop: curated category storefronts',
       description:
-        'Designed a shop‑in‑shop model — dedicated category storefronts with curated boutique assortments. The solution introduced “mini‑store” scenarios and prepared the product for scale.',
+        'Designed a shop-in-shop model — dedicated category storefronts featuring curated assortments from boutiques. The solution introduced a new “mini-store” scenario and prepared the product for scaling.',
       media: 'assets/main/oskelly.mp4',
       hasCasePage: true,
     },
     {
       id: 'growFood',
       title: 'Grow Food',
-      subtitle: 'Profile and loyalty program redesign',
+      subtitle: 'Profile & Loyalty Program Redesign',
       description:
-        'As part of an app redesign, designed profile, reviews, and loyalty program flows within the existing architecture, integrating new mechanics into the live product.',
+        'As part of the app redesign, designed the profile, reviews, and loyalty program experience. Worked within the existing architecture and integrated new mechanics into the current product ecosystem.',
       media: 'assets/main/growfood.mp4',
       hasCasePage: false,
     },
     {
       id: 'securOS',
       title: 'SecurOS',
-      subtitle: 'Operator interface evolution',
+      subtitle: 'Operator Interface Development',
       description:
         'Shipped new features and improved event-handling scenarios based on feedback from situational center operators.',
       media: 'assets/main/securos.png',
@@ -64,7 +64,7 @@ window.PORTFOLIO_CONTENT = {
   ],
   footer: {
     title: 'Thanks for taking a look',
-    subtitle: 'I’d love to discuss your project',
+    subtitle: 'I’d be happy to discuss your project with you',
     catCaption: 'The cat is in charge of vibes',
     petCat: 'Pet',
   },

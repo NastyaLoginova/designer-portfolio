@@ -14,7 +14,7 @@ const CASE_CONFIG = {
       type: 'text',
       title: null,
       header: null,
-      text: 'Designed a shop‑in‑shop model — dedicated category storefronts with curated boutique assortments. The solution introduced “mini‑store” scenarios into the ecosystem and prepared the product for scale.',
+      text: 'Designed a shop-in-shop model — dedicated storefronts with curated boutique assortments. The solution introduced a new “mini-store” scenario into the ecosystem and prepared the product for scaling.',
     },
     {
       type: 'video',
@@ -23,13 +23,13 @@ const CASE_CONFIG = {
     {
       type: 'text',
       title: 'Context',
-      text: 'As part of a redesign, the product gained a new layer — shop‑in‑shop sections. Each section is a standalone direction with its own assortment. Shop‑in‑shop works like a “mini‑store” with its own home, catalog, favorites, and cart.',
+      text: 'As part of the redesign, the product introduced shop-in-shop sections. Each section is a standalone direction with its own assortment. Shop‑in‑shop works like a “mini‑store” with its own home, catalog, favorites, and cart.',
     },
     {
       type: 'text',
       title: 'Solution',
       header: '1. Visual differentiation',
-      text: 'Early on, we treated shop‑in‑shop as separate spaces with a unique visual language. I designed the storefront home as the key screen that shapes first impressions of the category.',
+      text: 'EInitially, we approached each shop-in-shop as a distinct space with its own visual language. I designed the storefront home as the key screen that shapes first impressions of the category.',
     },
     {
       type: 'image',
@@ -38,7 +38,7 @@ const CASE_CONFIG = {
     {
       type: 'text',
       markdown: true,
-      text: 'When designing the page, I focused on:\n- making it clear which section the user is in\n- quick assortment overview\n- shorter path to the target business action (purchase)\n- browse-and-explore scenarios via collections and extra entry points',
+      text: 'When designing the storefront, I focused on:\n- making it clear which section the user is in\n- quick assortment overview\n- shorter path to the target business action (purchase)\n- browse-and-explore scenarios via collections and extra entry points',
     },
     {
       type: 'image',
@@ -48,7 +48,7 @@ const CASE_CONFIG = {
       type: 'text',
       header: '2. System approach',
       markdown: true,
-      text: 'After estimating build and maintenance cost, we moved to the design system:\n- adapted existing components for the new scenario\n- kept differentiation through content and layout',
+      text: 'After evaluating implementation and maintenance costs, we shifted to a design-system-based approach:\n- adapted existing components for the new scenario\n- kept differentiation through content and layout',
     },
     {
       type: 'image',
@@ -67,7 +67,7 @@ const CASE_CONFIG = {
       type: 'text',
       title: 'Outcome',
       markdown: true,
-      text: 'A single shop‑in‑shop model rolled out across categories:\n- the new scenario fits naturally into the ecosystem\n- a foundation for further scaling',
+      text: 'A unified shop-in-shop model was rolled out across categories::\n- the new scenario fits naturally into the ecosystem\n- a foundation for further scaling',
     },
     {
       type: 'image',
@@ -77,7 +77,7 @@ const CASE_CONFIG = {
       type: 'text',
       title: 'My role',
       markdown: true,
-      text: '- designed shop‑in‑shop structure and user flows\n- created the visual concept for the streetwear category\n- presented the solution to the client\n- adapted designs to the existing design system',
+      text: '- designed shop‑in‑shop structure and user flows\n- developed the visual concept for the streetwear category\n- presented the solution to the client\n- adapted designs to the existing design system',
     },
   ],
 };
