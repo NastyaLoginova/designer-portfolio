@@ -4,8 +4,10 @@ const CONFIG = {
   hero: {
     photo: 'assets/main/profile-photo-v2.png',
     title: 'Продуктовый дизайнер',
-    description:
-      'Создаю и развиваю e‑commerce и B2B‑сервисы в Heads and Hands. Люблю глубоко погружаться в проблему, искать её первопричины. Сильные стороны — системное мышление, работа со сложными доменами, коммуникация и защита решений.',
+    descriptionBefore: 'Создаю и\u00A0развиваю e‑commerce и\u00A0B2B‑сервисы в\u00A0',
+    descriptionAfter: '. Люблю глубоко погружаться в\u00A0проблему, искать её первопричины. Сильные стороны — системное мышление, работа со\u00A0сложными доменами, коммуникация и\u00A0защита решений.',
+    descriptionCompany: 'Heads and Hands',
+    descriptionCompanyUrl: 'https://handh.ru/',
   },
   cases: [
     {
@@ -13,7 +15,7 @@ const CONFIG = {
       title: 'Grow Food',
       subtitle: 'Редизайн приложения',
       description:
-        'Сделала редизайн приложения с командой, проектировала профиль и программу лояльности, отзывы на продукты',
+        'Сделала редизайн приложения с\u00A0командой, проектировала профиль и\u00A0программу лояльности, отзывы на\u00A0продукты',
       tags: ['FoodTech', 'Mobile', 'Feature', 'Concept'],
       media: 'assets/main/growfood.mp4',
       logo: 'assets/main/logo_GF.svg',
@@ -35,7 +37,7 @@ const CONFIG = {
       title: 'SecurOS',
       subtitle: 'Подавление повторных инцидентов',
       description:
-        'Спроектировала модель подавления повторных инцидентов, снизив нагрузку на операторов ситуационных центров',
+        'Спроектировала модель подавления повторных инцидентов, снизив нагрузку на\u00A0операторов ситуационных центров',
       tags: ['Enterprise', 'Mobile', 'Leading', 'Desktop'],
       media: 'assets/main/securos.png',
       logo: 'assets/main/logo_SecurOS.svg',
@@ -46,7 +48,7 @@ const CONFIG = {
       title: 'Oskelly',
       subtitle: 'Shop‑in‑shop',
       description:
-        'Реализовала 12 мини-магазинов, решение включало в себя масштабирование и работу с дизайн системой',
+        'Реализовала 12 мини-магазинов, решение включало в\u00A0себя масштабирование и\u00A0работу с\u00A0дизайн системой',
       tags: ['Marketplace', 'Mobile', 'Feature', 'Concept'],
       media: 'assets/main/oskelly.mp4',
       logo: 'assets/main/logo_Oskelly.svg',
@@ -57,7 +59,7 @@ const CONFIG = {
       title: 'Петрович',
       subtitle: 'Новый формат листинга',
       description:
-        'Подготовила листинг к переходу на маркетплейс-модель',
+        'Подготовила листинг к\u00A0переходу на\u00A0маркетплейс-модель',
       tags: ['E-commerce', 'Mobile', 'Feature', 'Concept'],
       media: 'assets/main/petrovich_list.mp4',
       logo: 'assets/main/logo_Petrovich.svg',
@@ -68,7 +70,7 @@ const CONFIG = {
       title: 'сайд проекты',
       subtitle: '',
       description:
-        'Сделала мини-приложение для тренировки голоса, авто-кликер для игр и многое другое',
+        'Сделала мини-приложение для тренировки голоса, авто-кликер для игр и\u00A0многое другое',
       tags: ['E-commerce', 'Mobile', 'Leading', 'Concept'],
       media: null,
       link: null,
@@ -144,8 +146,19 @@ function createHeroSection() {
   });
   const description = createElement('p', {
     className: 'hero__description',
-    text: CONFIG.hero.description,
   });
+  description.append(document.createTextNode(CONFIG.hero.descriptionBefore));
+  const companyLink = createElement('a', {
+    className: 'inline-text-link',
+    text: CONFIG.hero.descriptionCompany,
+    attrs: {
+      href: CONFIG.hero.descriptionCompanyUrl,
+      target: '_blank',
+      rel: 'noopener noreferrer',
+    },
+  });
+  description.appendChild(companyLink);
+  description.append(document.createTextNode(CONFIG.hero.descriptionAfter));
 
   content.appendChild(title);
   content.appendChild(description);
@@ -263,7 +276,7 @@ function createCTASection() {
   const textCol = createElement('div', { className: 'cta-section__text' });
   const heading = createElement('h2', {
     className: 'cta-section__heading',
-    text: 'Давайте делать\nкрутые продукты вместе :)',
+    text: 'Давайте делать крутые продукты вместе :)',
   });
 
   const linksRow = createElement('div', { className: 'cta-section__links' });
@@ -411,9 +424,7 @@ const states_short = {
 const states_long = {
   sit: { frames: 60, row: 1, duration: 4.5 },
 };
-
 const DISPLAY_PX = 292;
-
 let _catCurrentState = 'sit';
 let _catShortStartTime = 0;
 let _catIsLongPlaying = false;
