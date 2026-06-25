@@ -5,15 +5,14 @@
 const PETROVICH_SERVICES_ASSETS_PATH = '../../assets/cases/petrovich_services/';
 
 const CASE_CONFIG = {
-  id: 'petrovich_services',
   title: 'Петрович',
-  subtitle: 'Концепция сервисов',
+  logo: '../../assets/main/logo_Petrovich.svg',
   blocks: [
     {
       type: 'text',
       title: null,
       header: null,
-      text: 'Спроектировала раздел «Сервисы»: добавила сценарную логику, виджеты и приоритизацию, чтобы снизить случайные переходы и повысить конверсию в веб‑сервисы.',
+      text: 'Спроектировала концепцию сервисов для экосистемы e‑commerce: сценарная логика, виджеты и приоритизация.',
     },
     {
       type: 'image',
@@ -58,7 +57,6 @@ const CASE_CONFIG = {
       title: null,
       header: 'Концепт 1 — кастомизация списка',
       text: 'Первый концепт предполагал возможность самостоятельно формировать персональный набор избранного.',
-      spacingBefore: 20,
     },
     {
       type: 'image',
@@ -69,7 +67,6 @@ const CASE_CONFIG = {
       title: null,
       header: null,
       text: 'Однако в процессе проработки я отказалась от этого подхода, поскольку он не решал проблему понимания сервисов, а сама механика кастомизации требовала слишком много усилий от пользователя.',
-      spacingBefore: 20,
     },
     {
       type: 'text',
@@ -97,7 +94,6 @@ const CASE_CONFIG = {
       title: null,
       header: null,
       text: 'Дополнительно я рассмотрела вариант усиления раздела за счёт промо-блоков с видео. Этот подход может усиливать сценарную модель как дополнительный слой.',
-      spacingBefore: 20,
     },
    {
       type: 'image',

@@ -1,17 +1,13 @@
 const CONFIG = {
   yandexMetrikaId: 108181957,
-  nav: [
-    { id: 'about', label: 'ОБО МНЕ', href: '#about' },
-    { id: 'cases', label: 'КЕЙСЫ', href: '#cases' },
-    { id: 'contacts', label: 'КОНТАКТЫ', href: '#contacts' },
-  ],
   links: window.PORTFOLIO_LINKS,
-  profile: {
-    name: 'Настя Логинова',
-    descriptionStart:
-      'Продуктовый дизайнер с опытом более 3 лет. Создаю и развиваю e‑commerce и B2B‑сервисы в ',
-    descriptionEnd:
-      ', помогаю превращать бизнес-задачи и пользовательские проблемы в работающие продуктовые решения.',
+  hero: {
+    photo: 'assets/main/profile-photo-v2.png',
+    title: 'Продуктовый дизайнер',
+    descriptionBefore: 'Создаю и\u00A0развиваю e‑commerce и\u00A0B2B‑сервисы в\u00A0',
+    descriptionAfter: '. Люблю глубоко погружаться в\u00A0проблему, искать её первопричины. Сильные стороны — системное мышление, работа со\u00A0сложными доменами, коммуникация и\u00A0защита решений.',
+    descriptionCompany: 'Heads and Hands',
+    descriptionCompanyUrl: 'https://handh.ru/',
   },
   cases: [
     {
@@ -19,8 +15,10 @@ const CONFIG = {
       title: 'Петрович',
       subtitle: 'Концепция сервисов',
       description:
-        'Спроектировала раздел «Сервисы»: добавила сценарную логику, виджеты и приоритизацию, чтобы снизить случайные переходы и повысить конверсию в веб‑сервисы.',
+        'Спроектировала концепцию сервисов для экосистемы e‑commerce: сценарная логика, виджеты и приоритизация.',
+      tags: ['E-commerce', 'Mobile', 'Concept'],
       media: 'assets/main/petrovich_services.mp4',
+      logo: 'assets/main/logo_Petrovich.svg',
       link: './cases/petrovich_services/',
     },
     {
@@ -28,35 +26,53 @@ const CONFIG = {
       title: 'SecurOS',
       subtitle: 'Подавление повторных инцидентов',
       description:
-        'Решила конфликт между реальным процессом работы операторов и существующей моделью жизненного цикла инцидентов, не прибегая к дорогостоящей переработке системы.',
+        'Переосмыслила жизненный цикл инцидентов в enterprise‑системе — снизила нагрузку на операторов без дорогостоящей переработки платформы.',
+      tags: ['Enterprise', 'Desktop', 'Leading'],
       media: 'assets/main/securos.png',
+      logo: 'assets/main/logo_SecurOS.svg',
       link: './cases/securos/',
+    },
+    {
+      id: 'oskelly',
+      title: 'Oskelly',
+      subtitle: 'Shop‑in‑shop',
+      description:
+        'Спроектировала shop‑in‑shop для маркетплейса — витрины с курируемым ассортиментом подготовили продукт к масштабированию.',
+      tags: ['Marketplace', 'Mobile', 'Feature', 'Concept'],
+      media: 'assets/main/oskelly.mp4',
+      logo: 'assets/main/logo_Oskelly.svg',
+      link: './cases/oskelly/',
     },
     {
       id: 'petrovich_list',
       title: 'Петрович',
       subtitle: 'Новый формат листинга',
       description:
-        'Изменила формат отображения товаров с учётом роста инфографики: усилила роль изображений и упростила структуру карточек, что положительно повлияло на конверсию.',
+        'Переработала формат листинга для маркетплейс‑модели — усилила визуальную роль изображений и повысила конверсию.',
+      tags: ['E-commerce', 'Leading', 'Feature'],
       media: 'assets/main/petrovich_list.mp4',
+      logo: 'assets/main/logo_Petrovich.svg',
       link: './cases/petrovich_list/',
-    },
-    {
-      id: 'oskelly',
-      title: 'Oskelly',
-      subtitle: 'Shop‑in‑shop: витрины с курируемым ассортиментом',
-      description:
-        'Спроектировала модель shop‑in‑shop — отдельных витрин категорий с курируемым ассортиментом от бутиков. Решение позволило встроить новый сценарий «мини‑магазинов» и подготовить продукт к масштабированию.',
-      media: 'assets/main/oskelly.mp4',
-      link: './cases/oskelly/',
     },
     {
       id: 'growFood',
       title: 'Grow Food',
       subtitle: 'Редизайн приложения',
       description:
-        'В рамках перехода на подписочную модель проектировала ключевые пользовательские сценарии: чекаут, профиль, управление подпиской, программу лояльности и оценку блюд. Решения были направлены на рост удержания пользователей, частоты повторных заказов и LTV.',
+        'Редизайн foodtech‑приложения для подписочной модели — спроектировала профиль, лояльность и отзывы для роста удержания и LTV.',
+      tags: ['FoodTech', 'Mobile', 'Feature'],
       media: 'assets/main/growfood.mp4',
+      logo: 'assets/main/logo_GF.svg',
+      link: null,
+    },
+    {
+      id: 'side_projects',
+      title: 'сайд проекты',
+      subtitle: '',
+      description:
+        'Рисую концепты и веду собственные проекты — голосовой тренажёр, авто‑кликер, платформа для сбора юридических знаний и другие.',
+      tags: ['Leading', 'Concept'],
+      media: 'assets/main/side.png',
       link: null,
     },
   ],
@@ -66,107 +82,34 @@ function createElement(tag, options = {}) {
   const el = document.createElement(tag);
   const { className, text, attrs, children } = options;
 
-  if (className) {
-    el.className = className;
-  }
-
-  if (text) {
-    el.textContent = text;
-  }
-
+  if (className) el.className = className;
+  if (text) el.textContent = text;
   if (attrs) {
     Object.entries(attrs).forEach(([key, value]) => {
-      if (value != null) {
-        el.setAttribute(key, value);
-      }
+      if (value != null) el.setAttribute(key, value);
     });
   }
-
   if (children) {
     children.forEach((child) => {
-      if (child) {
-        el.appendChild(child);
-      }
+      if (child) el.appendChild(child);
     });
   }
 
   return el;
 }
 
-function createHeader(navItems) {
-  const header = createElement('header', {
-    className: 'site-header',
+function createHeader() {
+  const header = createElement('header', { className: 'site-header' });
+  const inner = createElement('div', { className: 'site-header__inner' });
+
+  const name = createElement('span', {
+    className: 'site-header__name',
+    text: 'Логинова\nАнастасия',
   });
 
-  const inner = createElement('nav', {
-    className: 'site-header__inner',
-  });
-
-  navItems.forEach((item, index) => {
-    const itemWrapper = createElement('div', {
-      className: 'site-header__item',
-    });
-
-    const link = createElement('a', {
-      className: 'site-header__link',
-      text: item.label,
-      attrs: { href: item.href },
-    });
-
-    itemWrapper.appendChild(link);
-    inner.appendChild(itemWrapper);
-  });
-
-  header.appendChild(inner);
-  return header;
-}
-
-function createAboutSection(config) {
-  const section = createElement('section', {
-    className: 'page',
-    attrs: { id: 'about' },
-  });
-
-  const aboutWrapper = createElement('div', { className: 'about' });
-
-  // Фото и кнопки
-  const photoWrapper = createElement('div', { className: 'about__photo-wrapper' });
-
-  const photoCard = createElement('div', { className: 'about__photo-card' });
-  const img = createElement('img', {
-    className: 'about__photo',
-    attrs: {
-      src: 'assets/main/profile-photo.png',
-      alt: 'photo',
-    },
-  });
-  photoCard.appendChild(img);
-
-  const cvButton = createElement('a', {
-    className: 'about__action about__action--cv',
-    attrs: {
-      href: CONFIG.links.cv,
-      target: '_blank',
-      rel: 'noopener noreferrer',
-    },
-  });
-
-  const cvLabel = createElement('span', {
-    className: 'about__action-label',
-    text: 'CV',
-  });
-  const cvIcon = createElement('img', {
-    className: 'about__action-icon',
-    attrs: {
-      src: 'assets/main/cv_icon.svg',
-      alt: 'CV',
-    },
-  });
-  cvButton.appendChild(cvLabel);
-  cvButton.appendChild(cvIcon);
-
-  const tgButton = createElement('a', {
-    className: 'about__action about__action--tg',
+  const cta = createElement('a', {
+    className: 'site-header__cta',
+    text: 'Связаться',
     attrs: {
       href: CONFIG.links.tg,
       target: '_blank',
@@ -174,248 +117,237 @@ function createAboutSection(config) {
     },
   });
 
-  const tgLabel = createElement('span', {
-    className: 'about__action-label',
-    text: 'TG',
+  cta.addEventListener('click', () => {
+    ym(CONFIG.yandexMetrikaId, 'reachGoal', 'header_cta_click');
   });
-  const tgIcon = createElement('img', {
-    className: 'about__action-icon',
-    attrs: {
-      src: 'assets/main/tg_icon.svg',
-      alt: 'TG',
-    },
-  });
-  tgButton.appendChild(tgLabel);
-  tgButton.appendChild(tgIcon);
 
-  photoWrapper.appendChild(photoCard);
-  // photoWrapper.appendChild(cvButton);
-  // photoWrapper.appendChild(tgButton);
+  inner.appendChild(name);
+  inner.appendChild(cta);
+  header.appendChild(inner);
 
-  // Текстовая часть
-  const content = createElement('div', { className: 'about__content' });
-  const cardsWrapper = createElement('div', { className: 'about__cards' });
+  return header;
+}
 
-  const aboutCard = createElement('article', {
-    className: 'about__card',
+function createHeroSection() {
+  const section = createElement('section', { className: 'hero' });
+
+  const photoWrapper = createElement('div', { className: 'hero__photo-wrapper' });
+  const photo = createElement('img', {
+    className: 'hero__photo',
+    attrs: { src: CONFIG.hero.photo, alt: 'photo' },
   });
-  const aboutTitle = createElement('h2', {
-    className: 'card__title',
-    text: 'Настя Логинова',
+
+  photoWrapper.appendChild(photo);
+
+  const content = createElement('div', { className: 'hero__content' });
+  const title = createElement('h1', {
+    className: 'hero__title',
+    text: CONFIG.hero.title,
   });
-  const aboutText = createElement('p', {
-    className: 'card__text',
+  const description = createElement('p', {
+    className: 'hero__description',
   });
-  aboutText.append(document.createTextNode(config.descriptionStart));
+  description.append(document.createTextNode(CONFIG.hero.descriptionBefore));
   const companyLink = createElement('a', {
     className: 'inline-text-link',
-    text: 'Heads and Hands',
+    text: CONFIG.hero.descriptionCompany,
     attrs: {
-      href: 'https://handh.ru/',
+      href: CONFIG.hero.descriptionCompanyUrl,
       target: '_blank',
       rel: 'noopener noreferrer',
     },
   });
-  aboutText.appendChild(companyLink);
-  aboutText.append(document.createTextNode(config.descriptionEnd));
-  aboutCard.appendChild(aboutTitle);
-  aboutCard.appendChild(aboutText);
+  description.appendChild(companyLink);
+  description.append(document.createTextNode(CONFIG.hero.descriptionAfter));
 
-  cardsWrapper.appendChild(aboutCard);
+  content.appendChild(title);
+  content.appendChild(description);
 
-  content.appendChild(cardsWrapper);
-
-  aboutWrapper.appendChild(photoWrapper);
-  aboutWrapper.appendChild(content);
-  section.appendChild(aboutWrapper);
+  section.appendChild(photoWrapper);
+  section.appendChild(content);
 
   return section;
 }
 
-function createCasesSection(cases) {
-  const section = createElement('section', {
-    className: 'page page--after',
-    attrs: { id: 'cases' },
-  });
+function createCasesSection() {
+  const section = createElement('section', { className: 'cases-section' });
+  const grid = createElement('div', { className: 'cases-grid' });
 
-  const list = createElement('div', { className: 'cases' });
-
-  cases.forEach((item) => {
-    const isCaseLink = item.link != null;
-    const caseBlock = createElement(isCaseLink ? 'a' : 'article', {
-      className: `case${isCaseLink ? ' case--link' : ''}`,
-      attrs: isCaseLink
+  CONFIG.cases.forEach((item) => {
+    const isLink = item.link != null;
+    const card = createElement(isLink ? 'a' : 'div', {
+      className: `case-card${isLink ? ' case-card--link' : ''}`,
+      attrs: isLink
         ? {
             href: item.link,
-            'aria-label': `Читать кейс: ${item.title}${item.subtitle ? ` — ${item.subtitle}` : ''}`,
+            'aria-label': 'Читать кейс: ' + item.title + (item.subtitle ? ' — ' + item.subtitle : ''),
           }
         : undefined,
     });
 
-    const mediaPath = (item.media || '').toLowerCase();
-    const isVideo = mediaPath.endsWith('.mp4');
-    const media = isVideo
-      ? createElement('video', {
-          className: 'case__media',
-          attrs: {
-            src: item.media,
-            autoplay: true,
-            loop: true,
-            muted: true,
-            preload: 'auto',
-            playsinline: true,
-          },
-        })
-      : createElement('img', {
-          className: 'case__media',
-          attrs: {
-            src: item.media,
-            alt: item.title,
-            loading: 'lazy',
-            decoding: 'async',
-          },
-        });
-
-    const content = createElement('div', {
-      className: 'case__content',
-    });
-    const card = createElement('div', {
-      className: 'about__card case__card',
-    });
-    const headerRow = createElement('div', {
-      className: 'case__header',
-    });
-    const lead = createElement('div', {
-      className: 'case__lead',
-    });
-    const title = createElement('p', {
-      className: 'case__lead-title',
+    // Header
+    const header = createElement('div', { className: 'case-card__header' });
+    const titleRow = createElement('div', { className: 'case-card__title-row' });
+    const title = createElement('h2', {
+      className: 'case-card__title',
       text: item.title,
     });
-    const subtitle = createElement('h3', {
-      className: 'case__lead-subtitle',
-      text: item.subtitle,
-    });
-    const button = createElement('span', {
-      className: 'case__button',
-      text: 'ЧИТАТЬ КЕЙС',
+    titleRow.appendChild(title);
+    if (item.logo) {
+      const logo = createElement('img', {
+        className: 'case-card__logo',
+        attrs: { src: item.logo, alt: '', 'aria-hidden': 'true' },
+      });
+      titleRow.appendChild(logo);
+    }
+
+    const description = createElement('p', {
+      className: 'case-card__description',
+      text: item.description,
     });
 
-    if (isCaseLink) {
-      caseBlock.addEventListener('click', () => {
+    header.appendChild(titleRow);
+    header.appendChild(description);
+
+    // Tags
+    const tags = createElement('div', { className: 'case-card__tags' });
+    item.tags.forEach((tag) => {
+      const chip = createElement('span', {
+        className: 'case-card__chip',
+        text: tag,
+      });
+      tags.appendChild(chip);
+    });
+
+    // Top area: header + tags, grows to fill space
+    const top = createElement('div', { className: 'case-card__top' });
+    top.appendChild(header);
+    top.appendChild(tags);
+
+    // Preview
+    const preview = createElement('div', { className: 'case-card__preview' });
+    if (item.media) {
+      const mediaPath = item.media.toLowerCase();
+      const isVideo = mediaPath.endsWith('.mp4');
+      const media = isVideo
+        ? createElement('video', {
+            className: '',
+            attrs: {
+              src: item.media,
+              autoplay: true,
+              loop: true,
+              muted: true,
+              preload: 'auto',
+              playsinline: true,
+            },
+          })
+        : createElement('img', {
+            attrs: {
+              src: item.media,
+              alt: item.title,
+              loading: 'lazy',
+              decoding: 'async',
+            },
+          });
+      preview.appendChild(media);
+    }
+
+    card.appendChild(top);
+    card.appendChild(preview);
+
+    if (isLink) {
+      card.addEventListener('click', () => {
         ym(CONFIG.yandexMetrikaId, 'reachGoal', 'read_case_click', { case_id: item.id });
       });
     }
 
-    lead.appendChild(title);
-    if (item.subtitle) {
-      lead.appendChild(subtitle);
-    }
-
-    headerRow.appendChild(lead);
-    if (isCaseLink) {
-      headerRow.appendChild(button);
-    }
-
-    const text = createElement('p', {
-      className: 'card__text',
-      text: item.description,
-    });
-
-    card.appendChild(headerRow);
-    card.appendChild(text);
-
-    content.appendChild(card);
-
-    caseBlock.appendChild(media);
-    caseBlock.appendChild(content);
-
-    list.appendChild(caseBlock);
+    grid.appendChild(card);
   });
 
-  section.appendChild(list);
+  section.appendChild(grid);
   return section;
 }
 
-function createFooterSection() {
-  const section = createElement('section', {
-    className: 'footer-section',
+function createCTASection() {
+  const section = createElement('section', { className: 'cta-section' });
+  const inner = createElement('div', { className: 'cta-section__inner' });
+
+  // Text + links
+  const textCol = createElement('div', { className: 'cta-section__text' });
+  const heading = createElement('h2', {
+    className: 'cta-section__heading',
+    text: 'Давайте делать крутые продукты вместе :)',
   });
 
-  const wrapper = createElement('div', { className: 'footer-section__inner' });
+  const linksRow = createElement('div', { className: 'cta-section__links' });
 
-  const content = createElement('div', { className: 'footer-section__content' });
-
-  const text1 = createElement('h2', {
-    className: 'footer-section__title',
-    text: 'Спасибо, что посмотрели',
-  });
-  const text2 = createElement('p', {
-    className: 'footer-section__subtitle',
-    text: 'Буду рада обсудить с Вами проект',
-  });
-
-  content.appendChild(text1);
-  content.appendChild(text2);
-
-  const buttonsWrapper = createElement('div', { className: 'footer-section__buttons' });
-
-  const buttonsConfig = [
-    { label: 'CV', href: CONFIG.links.cv, icon: 'assets/main/document.svg' },
-    { label: 'TELEGRAM', href: CONFIG.links.tg, icon: 'assets/main/link.svg' },
-    { label: 'LINKEDIN', href: CONFIG.links.linkedin, icon: 'assets/main/link.svg' }
+  const socialLinks = [
+    { label: 'Telegram', href: CONFIG.links.tg, icon: 'assets/main/link.svg' },
+    { label: 'LinkedIn', href: CONFIG.links.linkedin, icon: 'assets/main/link.svg' },
   ];
 
-  buttonsConfig.forEach(btn => {
-    const button = createElement('a', {
-      className: 'footer-section__button',
+  socialLinks.forEach((link) => {
+    const btn = createElement('a', {
+      className: 'cta-section__link',
       attrs: {
-        href: btn.href,
+        href: link.href,
         target: '_blank',
         rel: 'noopener noreferrer',
       },
     });
 
-    const buttonLabel = createElement('span', {
-      className: 'footer-section__button-label',
-      text: btn.label,
-    });
-    const buttonIcon = createElement('img', {
-      className: 'footer-section__button-icon',
-      attrs: {
-        src: btn.icon,
-        alt: '',
-        'aria-hidden': 'true',
-      },
+    const label = createElement('span', { text: link.label });
+    const icon = createElement('img', {
+      className: 'cta-section__link-icon',
+      attrs: { src: link.icon, alt: '', 'aria-hidden': 'true' },
     });
 
-    button.appendChild(buttonLabel);
-    button.appendChild(buttonIcon);
-    buttonsWrapper.appendChild(button);
+    btn.appendChild(label);
+    btn.appendChild(icon);
+    linksRow.appendChild(btn);
   });
 
+  // Copy email button
+  const copyBtn = createElement('button', {
+    className: 'cta-section__link',
+    attrs: { type: 'button' },
+  });
+
+  const copyLabel = createElement('span', { text: 'copy mail' });
+  const copyIcon = createElement('img', {
+    className: 'cta-section__link-icon',
+    attrs: { src: 'assets/main/document.svg', alt: '', 'aria-hidden': 'true' },
+  });
+
+  copyBtn.appendChild(copyLabel);
+  copyBtn.appendChild(copyIcon);
+
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText('loginovaanasatasiia@gmail.com').then(() => {
+      copyLabel.textContent = 'copied';
+      setTimeout(() => {
+        copyLabel.textContent = 'copy mail';
+      }, 2000);
+    });
+    ym(CONFIG.yandexMetrikaId, 'reachGoal', 'copy_email_click');
+  });
+
+  linksRow.appendChild(copyBtn);
+
+  textCol.appendChild(heading);
+  textCol.appendChild(linksRow);
+
+  // Cat area
+  const catArea = createElement('div', { className: 'cta-section__cat-area' });
   const cat = createElement('div', {
     className: 'cat',
     attrs: { id: 'cat', 'aria-hidden': 'true' },
   });
+  catArea.appendChild(cat);
 
-  const caption = createElement('div', { className: 'cat__caption' });
-  const captionText = createElement('span', {
-    className: 'cat__caption-text',
-    text: 'Кот отвечает за настроение',
-  });
-  const captionIcon = createElement('img', {
-    className: 'cat__caption-icon',
-    attrs: { src: 'assets/main/heart.svg', alt: 'heart' },
-  });
-  // caption.appendChild(captionText);
-  // caption.appendChild(captionIcon);
-
-  content.appendChild(buttonsWrapper);
-  content.appendChild(cat);
-  content.appendChild(caption);
-  wrapper.appendChild(content);
-  section.appendChild(wrapper);
+  inner.appendChild(textCol);
+  inner.appendChild(catArea);
+  section.appendChild(inner);
 
   return section;
 }
@@ -427,23 +359,21 @@ function init() {
   const dotGrid = createElement('div', { className: 'dot-grid' });
   document.body.appendChild(dotGrid);
 
-  const header = createHeader(CONFIG.nav);
-  const aboutSection = createAboutSection(CONFIG.profile);
-  const casesSection = createCasesSection(CONFIG.cases);
-  const footerSection = createFooterSection();
+  const header = createHeader();
+  const heroSection = createHeroSection();
+  const casesSection = createCasesSection();
+  const ctaSection = createCTASection();
 
   document.body.insertBefore(header, app);
-  app.appendChild(aboutSection);
+  app.appendChild(heroSection);
   app.appendChild(casesSection);
-  app.appendChild(footerSection);
-
-  setupNavigationScroll();
+  app.appendChild(ctaSection);
 }
 
 function updateHeaderMetrics() {
-  const headerInner = document.querySelector('.site-header__inner');
-  if (!headerInner) return;
-  const height = headerInner.offsetHeight;
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+  const height = header.offsetHeight;
   document.documentElement.style.setProperty('--header-height', `${height}px`);
 }
 
@@ -463,6 +393,13 @@ function initVideosAutoplay() {
   });
 }
 
+function updateHeaderScrollState() {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+  const scrolled = window.scrollY > 0;
+  header.classList.toggle('site-header--scrolled', scrolled);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   init();
   updateHeaderMetrics();
@@ -474,43 +411,11 @@ window.addEventListener('resize', () => {
   updateHeaderMetrics();
 });
 
-function setupNavigationScroll() {
-  const links = document.querySelectorAll('.site-header__link');
-  
-  links.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const href = link.getAttribute('href');
-      
-      if (href === '#about') {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      } else if (href === '#cases') {
-        const casesSection = document.getElementById('cases');
-        if (casesSection) {
-          const rect = casesSection.getBoundingClientRect();
-          const offsetTop = rect.top + window.pageYOffset - 80;
-          window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
-          });
-        }
-      } else if (href === '#contacts') {
-        const footerSection = document.querySelector('.footer-section');
-        if (footerSection) {
-          const rect = footerSection.getBoundingClientRect();
-          const offsetTop = rect.top + window.pageYOffset - 80;
-          window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
-          });
-        }
-      }
-    });
-  });
-}
+window.addEventListener('scroll', () => {
+  updateHeaderScrollState();
+}, { passive: true });
+
+// ===== Cat animation (reused from v1) =====
 
 const states_short = {
   sit: { frames: 20, row: 0, duration: 1.5 },
@@ -519,8 +424,7 @@ const states_short = {
 const states_long = {
   sit: { frames: 60, row: 1, duration: 4.5 },
 };
-const DISPLAY_PX = 224;
-
+const DISPLAY_PX = 292;
 let _catCurrentState = 'sit';
 let _catShortStartTime = 0;
 let _catIsLongPlaying = false;
@@ -533,7 +437,7 @@ function playShort(stateName) {
   const totalFrames = s.frames || 1;
   const duration = s.duration || 5;
 
-  el.style.backgroundPositionX = `0px`;
+  el.style.backgroundPositionX = '0px';
   el.style.backgroundPositionY = `${-s.row * DISPLAY_PX}px`;
 
   const animDistance = -totalFrames * DISPLAY_PX;
@@ -547,7 +451,8 @@ function playShort(stateName) {
   _catCurrentState = stateName;
 }
 
-function playLong(stateName, startFrame = 0) {
+function playLong(stateName, startFrame) {
+  if (startFrame === undefined) startFrame = 0;
   const el = document.getElementById('cat');
   if (!el) return;
   const l = states_long[stateName] || states_long.sit;
@@ -564,7 +469,6 @@ function playLong(stateName, startFrame = 0) {
 
   const startX = -startFrame * DISPLAY_PX;
   el.style.backgroundPositionX = `${startX}px`;
-
   el.style.backgroundPositionY = `${-l.row * DISPLAY_PX}px`;
 
   const deltaX = -remainingFrames * DISPLAY_PX;
@@ -606,11 +510,9 @@ function initializeCat() {
     if (canUseHoverCursor) {
       catCursor = createElement('div', { className: 'cat-cursor' });
       const ccText = createElement('span', {
-        className: 'cat-cursor-text',
         text: 'Погладить',
       });
       const ccIcon = createElement('img', {
-        className: 'cat-cursor-icon',
         attrs: { src: 'assets/main/pet.svg', alt: 'pet' },
       });
       catCursor.appendChild(ccText);
@@ -618,7 +520,7 @@ function initializeCat() {
       document.body.appendChild(catCursor);
     }
 
-    playShort('sit', 0);
+    playShort('sit');
 
     if (catCursor) {
       el.addEventListener('mouseenter', () => {
@@ -642,7 +544,6 @@ function initializeCat() {
     const frames = s.frames || 1;
     const frameDuration = duration / frames;
 
-    
     const startTime = _catShortStartTime || performance.now();
     const elapsed = (performance.now() - startTime) / 1000;
     const frameIndex = Math.floor(((elapsed % duration) / frameDuration)) % frames;

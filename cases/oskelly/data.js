@@ -5,15 +5,14 @@
 const OSKELLY_ASSETS_PATH = '../../assets/cases/oskelly/';
 
 const CASE_CONFIG = {
-  id: 'oskelly',
   title: 'Oskelly',
-  subtitle: 'Shop‑in‑shop: витрины с курируемым ассортиментом',
+  logo: '../../assets/main/logo_Oskelly.svg',
   blocks: [
     {
       type: 'text',
       title: null,
       header: null,
-      text: 'Спроектировала модель shop‑in‑shop — отдельных витрин категорий с курируемым ассортиментом от бутиков. Решение позволило встроить новый сценарий «мини‑магазинов» в экосистему и подготовить продукт к масштабированию.',
+      text: 'Спроектировала shop‑in‑shop для маркетплейса — витрины с курируемым ассортиментом подготовили продукт к масштабированию.',
     },
     {
       type: 'video',
