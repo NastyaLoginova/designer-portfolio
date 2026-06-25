@@ -5,15 +5,14 @@
 const SECUROS_ASSETS_PATH = '../../assets/cases/securos/';
 
 const CASE_CONFIG = {
-  id: 'securos',
   title: 'SecurOS',
-  subtitle: 'Подавление повторных инцидентов',
+  logo: '../../assets/main/logo_SecurOS.svg',
   blocks: [
     {
       type: 'text',
       title: null,
       header: null,
-      text: 'Решила конфликт между реальным процессом работы операторов и существующей моделью жизненного цикла инцидентов, не прибегая к дорогостоящей переработке системы.',
+      text: 'Переосмыслила жизненный цикл инцидентов в enterprise‑системе — снизила нагрузку на операторов без дорогостоящей переработки платформы.',
     },
     {
       type: 'image',

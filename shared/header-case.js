@@ -1,5 +1,6 @@
 /**
- * Навигация для страниц кейсов
+ * Навигация для страниц кейсов v2
+ * Хедер с кнопкой закрытия (X) в правом верхнем углу
  */
 
 function createElement(tag, options = {}) {
@@ -33,79 +34,31 @@ function createElement(tag, options = {}) {
   return el;
 }
 
-function createCaseHeader() {
-  const linksConfig = window.PORTFOLIO_LINKS;
+function createCaseHeaderV2() {
   const homeHref = getHomeHref();
 
   const header = createElement('header', {
-    className: 'case-header',
+    className: 'case-header-v2',
   });
 
-  const inner = createElement('nav', {
-    className: 'case-header__inner',
-  });
-
-  const leftItem = createElement('div', {
-    className: 'case-header__item case-header__item--home',
-  });
-  const homeIcon = createElement('img', {
-    className: 'case-header__home-icon',
+  const closeBtn = createElement('a', {
+    className: 'case-header-v2__close',
     attrs: {
-      src: '../../assets/cases/back.svg',
-      alt: '',
-      'aria-hidden': 'true',
+      href: homeHref,
+      'aria-label': 'Close',
     },
   });
-  const homeLabel = createElement('span', {
-    className: 'case-header__home-label',
-    text: 'НА ГЛАВНУЮ',
-  });
-  const homeLink = createElement('a', {
-    className: 'case-header__home-link',
-    children: [homeIcon, homeLabel],
-    attrs: { href: homeHref },
-  });
-  leftItem.appendChild(homeLink);
 
-  const rightStack = createElement('div', { className: 'case-header__stack' });
-  const links = [
-    { label: 'CV', shortLabel: 'CV', href: linksConfig.cv },
-    { label: 'TELEGRAM', shortLabel: 'TG', href: linksConfig.tg },
-    { label: 'LINKEDIN', shortLabel: 'IN', href: linksConfig.linkedin },
-  ];
-
-  links.forEach((item) => {
-    const stackItem = createElement('div', {
-      className: 'case-header__item case-header__item--stack',
-    });
-    const link = createElement('a', {
-      className: 'case-header__link',
-      text: window.innerWidth <= 648 ? item.shortLabel : item.label,
-      attrs: {
-        href: item.href,
-        target: '_blank',
-        rel: 'noopener noreferrer',
-      },
-    });
-    stackItem.appendChild(link);
-    rightStack.appendChild(stackItem);
-  });
-
-  inner.appendChild(leftItem);
-  inner.appendChild(rightStack);
-  header.appendChild(inner);
+  header.appendChild(closeBtn);
 
   return header;
 }
 
-/**
- * Инициализирует навигацию для кейса
- */
-function initCaseNavigation() {
+function initCaseNavigationV2() {
   const homeHref = getHomeHref();
 
-  document.querySelectorAll('.case-header__home-link').forEach((link) => {
-    link.addEventListener('click', (e) => {
+  document.querySelectorAll('.case-header-v2__close').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
       e.preventDefault();
 
       const cameFromHome =
