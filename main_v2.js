@@ -30,7 +30,7 @@ const CONFIG = {
       tags: ['E-commerce', 'Mobile', 'Leading', 'Concept'],
       media: 'assets/main/petrovich_services.mp4',
       logo: 'assets/main/logo_Petrovich.svg',
-      link: './cases/petrovich_services/',
+      link: './cases/petrovich_services_v2/',
     },
     {
       id: 'securOS',
@@ -41,7 +41,7 @@ const CONFIG = {
       tags: ['Enterprise', 'Mobile', 'Leading', 'Desktop'],
       media: 'assets/main/securos.png',
       logo: 'assets/main/logo_SecurOS.svg',
-      link: './cases/securos/',
+      link: './cases/securos_v2/',
     },
     {
       id: 'oskelly',
@@ -52,7 +52,7 @@ const CONFIG = {
       tags: ['Marketplace', 'Mobile', 'Feature', 'Concept'],
       media: 'assets/main/oskelly.mp4',
       logo: 'assets/main/logo_Oskelly.svg',
-      link: './cases/oskelly/',
+      link: './cases/oskelly_v2/',
     },
     {
       id: 'petrovich_list',
@@ -63,7 +63,7 @@ const CONFIG = {
       tags: ['E-commerce', 'Mobile', 'Feature', 'Concept'],
       media: 'assets/main/petrovich_list.mp4',
       logo: 'assets/main/logo_Petrovich.svg',
-      link: './cases/petrovich_list/',
+      link: './cases/petrovich_list_v2/',
     },
     {
       id: 'side_projects',
