@@ -222,6 +222,9 @@ function createCaseVideoBlockV2(block) {
     },
   });
   wrapper.appendChild(video);
+  if (block.borderRadius != null) {
+    video.style.borderRadius = `${block.borderRadius}px`;
+  }
   return wrapper;
 }
 

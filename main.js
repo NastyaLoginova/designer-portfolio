@@ -33,15 +33,15 @@ const CONFIG = {
       link: './cases/securos/',
     },
     {
-      id: 'oskelly',
-      title: 'Oskelly',
-      subtitle: 'Shop‑in‑shop',
+      id: 'growFood',
+      title: 'Grow Food',
+      subtitle: 'Редизайн приложения',
       description:
-        'Спроектировала shop‑in‑shop для маркетплейса — витрины с курируемым ассортиментом подготовили продукт к масштабированию.',
-      tags: ['Marketplace', 'Mobile', 'Feature', 'Concept'],
-      media: 'assets/main/oskelly.mp4',
-      logo: 'assets/main/logo_Oskelly.svg',
-      link: './cases/oskelly/',
+        'Редизайн foodtech‑приложения для подписочной модели — спроектировала профиль, лояльность и отзывы для роста удержания и LTV.',
+      tags: ['FoodTech', 'Mobile', 'Feature'],
+      media: 'assets/main/growfood.mp4',
+      logo: 'assets/main/logo_GF.svg',
+      link: './cases/growfood/',
     },
     {
       id: 'petrovich_list',
@@ -66,25 +66,14 @@ const CONFIG = {
       link: './cases/petrovich_services/',
     },
     {
-      id: 'growFood',
-      title: 'Grow Food',
-      subtitle: 'Редизайн приложения',
-      description:
-        'Редизайн foodtech‑приложения для подписочной модели — спроектировала профиль, лояльность и отзывы для роста удержания и LTV.',
-      tags: ['FoodTech', 'Mobile', 'Feature'],
-      media: 'assets/main/growfood.mp4',
-      logo: 'assets/main/logo_GF.svg',
-      link: null,
-    },
-    {
       id: 'side_projects',
-      title: 'сайд проекты',
+        title: 'концепты',
       subtitle: '',
       description:
         'Рисую концепты и веду собственные проекты — голосовой тренажёр, авто‑кликер, платформа для сбора юридических знаний и другие.',
       tags: ['Leading', 'Concept'],
-      media: 'assets/main/side.png',
-      link: null,
+      media: 'assets/main/oskelly.mp4',
+      link: './cases/concepts/',
     },
   ],
 };
