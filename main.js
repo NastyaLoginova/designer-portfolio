@@ -11,15 +11,15 @@ const CONFIG = {
   },
   cases: [
     {
-      id: 'petrovich_services',
+      id: 'petrovich_cart',
       title: 'Петрович',
-      subtitle: 'Концепция сервисов',
+      subtitle: 'Развитие корзины мобильного приложения',
       description:
-        'Спроектировала концепцию сервисов для экосистемы e‑commerce: сценарная логика, виджеты и приоритизация.',
-      tags: ['E-commerce', 'Mobile', 'Concept'],
-      media: 'assets/main/petrovich_services.mp4',
+        'Перепроектировала корзину, чтобы встроить новые пользовательские сценарии без усложнения оформления заказа.',
+      tags: ['E-commerce', 'Mobile', 'Feature'],
+      media: 'assets/main/Petrovich_cart.mp4',
       logo: 'assets/main/logo_Petrovich.svg',
-      link: './cases/petrovich_services/',
+      link: './cases/cart/',
     },
     {
       id: 'securOS',
@@ -53,6 +53,17 @@ const CONFIG = {
       media: 'assets/main/petrovich_list.mp4',
       logo: 'assets/main/logo_Petrovich.svg',
       link: './cases/petrovich_list/',
+    },
+    {
+      id: 'petrovich_services',
+      title: 'Петрович',
+      subtitle: 'Концепция сервисов',
+      description:
+        'Спроектировала концепцию сервисов для экосистемы e‑commerce: сценарная логика, виджеты и приоритизация.',
+      tags: ['E-commerce', 'Mobile', 'Concept'],
+      media: 'assets/main/petrovich_services.mp4',
+      logo: 'assets/main/logo_Petrovich.svg',
+      link: './cases/petrovich_services/',
     },
     {
       id: 'growFood',
